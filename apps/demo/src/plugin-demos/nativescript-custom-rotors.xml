@@ -6,10 +6,11 @@
     <StackLayout class="p-20">
         <ScrollView class="h-full">
           <StackLayout>
-            <Button text="Test nativescript-custom-rotors" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group1"/>
-            <Button text="Test nativescript-custom-rotors" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group1"/>
-            <Button text="Test nativescript-custom-rotors" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group2"/>
-            <Button text="Test nativescript-custom-rotors" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group2"/>
+            <Button text="Group1 Button1" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group1"/>
+            <Button text="Group1 Button2" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group1"/>
+            <Button text="Group2 Button1" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group2"/>
+            <Button text="Group2 Button2" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group2"/>
+            <Button text="Not Part of Rotor group" tap="{{ testIt }}" class="btn btn-primary" />
           </StackLayout>
         </ScrollView>
     </StackLayout>
