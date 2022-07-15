@@ -1,0 +1,16 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page" rotorContainer="true">
+    <Page.actionBar>
+        <ActionBar title="nativescript-custom-rotors" icon="" class="action-bar">
+        </ActionBar>
+    </Page.actionBar>
+    <StackLayout class="p-20">
+        <ScrollView class="h-full">
+          <StackLayout>
+            <Button text="Test nativescript-custom-rotors" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group1"/>
+            <Button text="Test nativescript-custom-rotors" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group1"/>
+            <Button text="Test nativescript-custom-rotors" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group2"/>
+            <Button text="Test nativescript-custom-rotors" tap="{{ testIt }}" class="btn btn-primary" rotorGroup="group2"/>
+          </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</Page>

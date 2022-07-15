@@ -20,7 +20,8 @@
       }
     ],
     "paths": {
-      "@demo/shared": ["tools/demo/index.ts"]
+      "@demo/shared": ["tools/demo/index.ts"],
+      "@nativescript/nativescript-custom-rotors": ["packages/nativescript-custom-rotors/index.d.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
