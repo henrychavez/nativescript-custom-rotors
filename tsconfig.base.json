@@ -21,7 +21,8 @@
     ],
     "paths": {
       "@demo/shared": ["tools/demo/index.ts"],
-      "@nativescript/nativescript-custom-rotors": ["packages/nativescript-custom-rotors/index.d.ts"]
+      "@nativescript/nativescript-custom-rotors": ["packages/nativescript-custom-rotors/index.d.ts"],
+      "@nativescript/camera2": ["packages/camera2/index.d.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

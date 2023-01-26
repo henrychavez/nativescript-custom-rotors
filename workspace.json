@@ -3,6 +3,7 @@
   "projects": {
     "demo": "apps/demo",
     "demo-angular": "apps/demo-angular",
-    "nativescript-custom-rotors": "packages/nativescript-custom-rotors"
+    "nativescript-custom-rotors": "packages/nativescript-custom-rotors",
+    "camera2": "packages/camera2"
   }
 }

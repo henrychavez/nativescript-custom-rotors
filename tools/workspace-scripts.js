@@ -68,6 +68,13 @@ module.exports = {
           description: '@nativescript/nativescript-custom-rotors: Build',
         },
       },
+      // @nativescript/camera2
+      camera2: {
+        build: {
+          script: 'nx run camera2:build.all',
+          description: '@nativescript/camera2: Build',
+        },
+      },
       'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -81,6 +88,10 @@ module.exports = {
       'nativescript-custom-rotors': {
         script: 'nx run nativescript-custom-rotors:focus',
         description: 'Focus on @nativescript/nativescript-custom-rotors',
+      },
+      camera2: {
+        script: 'nx run camera2:focus',
+        description: 'Focus on @nativescript/camera2',
       },
       reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',

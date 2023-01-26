@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 export class HomeComponent {
   demos = [
     {
+      name: 'camera2',
+    },
+    {
       name: 'nativescript-custom-rotors',
     },
   ];

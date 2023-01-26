@@ -1,0 +1,64 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/camera2",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/camera2",
+        "tsConfig": "packages/camera2/tsconfig.json",
+        "packageJson": "packages/camera2/package.json",
+        "main": "packages/camera2/index.d.ts",
+        "assets": [
+          "packages/camera2/*.md",
+          "packages/camera2/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/camera2/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["node tools/scripts/build-finish.ts camera2"],
+        "parallel": false
+      },
+      "outputs": ["dist/packages/camera2"],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["nx g @nativescript/plugin-tools:focus-packages camera2"],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/camera2/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

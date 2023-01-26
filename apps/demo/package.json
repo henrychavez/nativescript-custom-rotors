@@ -5,7 +5,8 @@
   "repository": "<fill-your-repository-here>",
   "dependencies": {
     "@nativescript/core": "file:../../node_modules/@nativescript/core",
-    "@nativescript/nativescript-custom-rotors": "file:../../packages/nativescript-custom-rotors"
+    "@nativescript/nativescript-custom-rotors": "file:../../packages/nativescript-custom-rotors",
+    "@nativescript/camera2": "file:../../packages/camera2"
   },
   "devDependencies": {
     "@nativescript/android": "~8.2.0",

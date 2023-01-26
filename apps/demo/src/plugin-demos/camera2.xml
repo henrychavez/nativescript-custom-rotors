@@ -1,0 +1,14 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page" xmlns:voicethread="@nativescript/camera2">
+    <Page.actionBar>
+        <ActionBar title="camera2" icon="" class="action-bar">
+        </ActionBar>
+    </Page.actionBar>
+    <GridLayout rows="*, auto" class="p-20">
+        <voicethread:Camera2 loaded="{{ onCameraLoad }}"></voicethread:Camera2>
+        <StackLayout row="1">
+        <button class="btn btn-primary"  text="take photo" tap="{{ takePhoto }}"></button>
+        <button class="btn btn-primary" text="switch camera" tap="{{ switchCamera }}"></button>
+        <button class="btn btn-primary" text="toggle flash" tap="{{ toggleFlash }}"></button>
+        </StackLayout>
+    </GridLayout>
+</Page>
