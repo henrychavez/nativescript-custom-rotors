@@ -34,4 +34,16 @@ export class DemoModel extends DemoSharedCamera2 {
   toggleFlash() {
     this.camera.toggleFlash();
   }
+
+  captureVideo() {
+    this.camera.captureVideo();
+  }
+
+  pauseVideo() {
+    this.camera.pauseVideo();
+  }
+
+  resumeVideo() {
+    this.camera.resumeVideo();
+  }
 }

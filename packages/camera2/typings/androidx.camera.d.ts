@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/triple-slash-reference */
-/* eslint-disable @typescript-eslint/prefer-namespace-keyword */
-/// <reference path="../../../references.d.ts" />
-
 declare module androidx {
   export module camera {
     export module camera2 {
@@ -12167,6 +12163,2547 @@ declare module androidx {
 
 declare module androidx {
   export module camera {
+    export module video {
+      export abstract class AudioSpec {
+        public static class: java.lang.Class<androidx.camera.video.AudioSpec>;
+        public static SOURCE_FORMAT_AUTO: number;
+        public static SOURCE_FORMAT_PCM_16BIT: number;
+        public static CHANNEL_COUNT_AUTO: number;
+        public static CHANNEL_COUNT_NONE: number;
+        public static CHANNEL_COUNT_MONO: number;
+        public static CHANNEL_COUNT_STEREO: number;
+        public static SOURCE_AUTO: number;
+        public static SOURCE_CAMCORDER: number;
+        public static BITRATE_RANGE_AUTO: globalAndroid.util.Range<java.lang.Integer>;
+        public static SAMPLE_RATE_RANGE_AUTO: globalAndroid.util.Range<java.lang.Integer>;
+        public static NO_AUDIO: androidx.camera.video.AudioSpec;
+        public getBitrate(): globalAndroid.util.Range<java.lang.Integer>;
+        public static builder(): androidx.camera.video.AudioSpec.Builder;
+        public getSampleRate(): globalAndroid.util.Range<java.lang.Integer>;
+        public getSourceFormat(): number;
+        public toBuilder(): androidx.camera.video.AudioSpec.Builder;
+        public getSource(): number;
+        public getChannelCount(): number;
+      }
+      export module AudioSpec {
+        export abstract class Builder {
+          public static class: java.lang.Class<androidx.camera.video.AudioSpec.Builder>;
+          public setSampleRate(param0: globalAndroid.util.Range<java.lang.Integer>): androidx.camera.video.AudioSpec.Builder;
+          public setSourceFormat(param0: number): androidx.camera.video.AudioSpec.Builder;
+          public setSource(param0: number): androidx.camera.video.AudioSpec.Builder;
+          public build(): androidx.camera.video.AudioSpec;
+          public setChannelCount(param0: number): androidx.camera.video.AudioSpec.Builder;
+          public setBitrate(param0: globalAndroid.util.Range<java.lang.Integer>): androidx.camera.video.AudioSpec.Builder;
+        }
+        export class ChannelCount {
+          public static class: java.lang.Class<androidx.camera.video.AudioSpec.ChannelCount>;
+          /**
+           * Constructs a new instance of the androidx.camera.video.AudioSpec$ChannelCount interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+           */
+          public constructor(implementation: {});
+          public constructor();
+        }
+        export class Source {
+          public static class: java.lang.Class<androidx.camera.video.AudioSpec.Source>;
+          /**
+           * Constructs a new instance of the androidx.camera.video.AudioSpec$Source interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+           */
+          public constructor(implementation: {});
+          public constructor();
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export abstract class AudioStats {
+        public static class: java.lang.Class<androidx.camera.video.AudioStats>;
+        public static AUDIO_STATE_ACTIVE: number;
+        public static AUDIO_STATE_DISABLED: number;
+        public static AUDIO_STATE_SOURCE_SILENCED: number;
+        public static AUDIO_STATE_ENCODER_ERROR: number;
+        public hasAudio(): boolean;
+        public getAudioState(): number;
+        public hasError(): boolean;
+        public getErrorCause(): java.lang.Throwable;
+      }
+      export module AudioStats {
+        export class AudioState {
+          public static class: java.lang.Class<androidx.camera.video.AudioStats.AudioState>;
+          /**
+           * Constructs a new instance of the androidx.camera.video.AudioStats$AudioState interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+           */
+          public constructor(implementation: {});
+          public constructor();
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_AudioSpec extends androidx.camera.video.AudioSpec {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_AudioSpec>;
+        public getBitrate(): globalAndroid.util.Range<java.lang.Integer>;
+        public getSampleRate(): globalAndroid.util.Range<java.lang.Integer>;
+        public getSourceFormat(): number;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public toBuilder(): androidx.camera.video.AudioSpec.Builder;
+        public toString(): string;
+        public getSource(): number;
+        public getChannelCount(): number;
+      }
+      export module AutoValue_AudioSpec {
+        export class Builder extends androidx.camera.video.AudioSpec.Builder {
+          public static class: java.lang.Class<androidx.camera.video.AutoValue_AudioSpec.Builder>;
+          public setSampleRate(param0: globalAndroid.util.Range<java.lang.Integer>): androidx.camera.video.AudioSpec.Builder;
+          public setSourceFormat(param0: number): androidx.camera.video.AudioSpec.Builder;
+          public setSource(param0: number): androidx.camera.video.AudioSpec.Builder;
+          public build(): androidx.camera.video.AudioSpec;
+          public setChannelCount(param0: number): androidx.camera.video.AudioSpec.Builder;
+          public setBitrate(param0: globalAndroid.util.Range<java.lang.Integer>): androidx.camera.video.AudioSpec.Builder;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_AudioStats extends androidx.camera.video.AudioStats {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_AudioStats>;
+        public getAudioState(): number;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public getErrorCause(): java.lang.Throwable;
+        public toString(): string;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_FallbackStrategy_RuleStrategy extends androidx.camera.video.FallbackStrategy.RuleStrategy {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_FallbackStrategy_RuleStrategy>;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public toString(): string;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_FileDescriptorOutputOptions_FileDescriptorOutputOptionsInternal extends androidx.camera.video.FileDescriptorOutputOptions.FileDescriptorOutputOptionsInternal {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_FileDescriptorOutputOptions_FileDescriptorOutputOptionsInternal>;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public toString(): string;
+      }
+      export module AutoValue_FileDescriptorOutputOptions_FileDescriptorOutputOptionsInternal {
+        export class Builder extends androidx.camera.video.FileDescriptorOutputOptions.FileDescriptorOutputOptionsInternal.Builder {
+          public static class: java.lang.Class<androidx.camera.video.AutoValue_FileDescriptorOutputOptions_FileDescriptorOutputOptionsInternal.Builder>;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_FileOutputOptions_FileOutputOptionsInternal extends androidx.camera.video.FileOutputOptions.FileOutputOptionsInternal {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_FileOutputOptions_FileOutputOptionsInternal>;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public toString(): string;
+      }
+      export module AutoValue_FileOutputOptions_FileOutputOptionsInternal {
+        export class Builder extends androidx.camera.video.FileOutputOptions.FileOutputOptionsInternal.Builder {
+          public static class: java.lang.Class<androidx.camera.video.AutoValue_FileOutputOptions_FileOutputOptionsInternal.Builder>;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_MediaSpec extends androidx.camera.video.MediaSpec {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_MediaSpec>;
+        public getOutputFormat(): number;
+        public toBuilder(): androidx.camera.video.MediaSpec.Builder;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public getVideoSpec(): androidx.camera.video.VideoSpec;
+        public getAudioSpec(): androidx.camera.video.AudioSpec;
+        public toString(): string;
+      }
+      export module AutoValue_MediaSpec {
+        export class Builder extends androidx.camera.video.MediaSpec.Builder {
+          public static class: java.lang.Class<androidx.camera.video.AutoValue_MediaSpec.Builder>;
+          public setOutputFormat(param0: number): androidx.camera.video.MediaSpec.Builder;
+          public setAudioSpec(param0: androidx.camera.video.AudioSpec): androidx.camera.video.MediaSpec.Builder;
+          public setVideoSpec(param0: androidx.camera.video.VideoSpec): androidx.camera.video.MediaSpec.Builder;
+          public build(): androidx.camera.video.MediaSpec;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_MediaStoreOutputOptions_MediaStoreOutputOptionsInternal extends androidx.camera.video.MediaStoreOutputOptions.MediaStoreOutputOptionsInternal {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_MediaStoreOutputOptions_MediaStoreOutputOptionsInternal>;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public toString(): string;
+      }
+      export module AutoValue_MediaStoreOutputOptions_MediaStoreOutputOptionsInternal {
+        export class Builder extends androidx.camera.video.MediaStoreOutputOptions.MediaStoreOutputOptionsInternal.Builder {
+          public static class: java.lang.Class<androidx.camera.video.AutoValue_MediaStoreOutputOptions_MediaStoreOutputOptionsInternal.Builder>;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_OutputResults extends androidx.camera.video.OutputResults {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_OutputResults>;
+        public getOutputUri(): globalAndroid.net.Uri;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public toString(): string;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_Quality_ConstantQuality extends androidx.camera.video.Quality.ConstantQuality {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_Quality_ConstantQuality>;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public toString(): string;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_Recorder_RecordingRecord extends androidx.camera.video.Recorder.RecordingRecord {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_Recorder_RecordingRecord>;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public toString(): string;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_RecordingStats extends androidx.camera.video.RecordingStats {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_RecordingStats>;
+        public getAudioStats(): androidx.camera.video.AudioStats;
+        public hashCode(): number;
+        public getNumBytesRecorded(): number;
+        public equals(param0: any): boolean;
+        public getRecordedDurationNanos(): number;
+        public toString(): string;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_StreamInfo extends androidx.camera.video.StreamInfo {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_StreamInfo>;
+        public getStreamState(): androidx.camera.video.StreamInfo.StreamState;
+        public hashCode(): number;
+        public getId(): number;
+        public equals(param0: any): boolean;
+        public toString(): string;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class AutoValue_VideoSpec extends androidx.camera.video.VideoSpec {
+        public static class: java.lang.Class<androidx.camera.video.AutoValue_VideoSpec>;
+        public getBitrate(): globalAndroid.util.Range<java.lang.Integer>;
+        public getQualitySelector(): androidx.camera.video.QualitySelector;
+        public hashCode(): number;
+        public getFrameRate(): globalAndroid.util.Range<java.lang.Integer>;
+        public equals(param0: any): boolean;
+        public toString(): string;
+        public toBuilder(): androidx.camera.video.VideoSpec.Builder;
+      }
+      export module AutoValue_VideoSpec {
+        export class Builder extends androidx.camera.video.VideoSpec.Builder {
+          public static class: java.lang.Class<androidx.camera.video.AutoValue_VideoSpec.Builder>;
+          public setQualitySelector(param0: androidx.camera.video.QualitySelector): androidx.camera.video.VideoSpec.Builder;
+          public setFrameRate(param0: globalAndroid.util.Range<java.lang.Integer>): androidx.camera.video.VideoSpec.Builder;
+          public build(): androidx.camera.video.VideoSpec;
+          public setBitrate(param0: globalAndroid.util.Range<java.lang.Integer>): androidx.camera.video.VideoSpec.Builder;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class FallbackStrategy {
+        public static class: java.lang.Class<androidx.camera.video.FallbackStrategy>;
+        public static higherQualityOrLowerThan(param0: androidx.camera.video.Quality): androidx.camera.video.FallbackStrategy;
+        public static lowerQualityOrHigherThan(param0: androidx.camera.video.Quality): androidx.camera.video.FallbackStrategy;
+        public static lowerQualityThan(param0: androidx.camera.video.Quality): androidx.camera.video.FallbackStrategy;
+        public static higherQualityThan(param0: androidx.camera.video.Quality): androidx.camera.video.FallbackStrategy;
+      }
+      export module FallbackStrategy {
+        export abstract class RuleStrategy extends androidx.camera.video.FallbackStrategy {
+          public static class: java.lang.Class<androidx.camera.video.FallbackStrategy.RuleStrategy>;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class FileDescriptorOutputOptions extends androidx.camera.video.OutputOptions {
+        public static class: java.lang.Class<androidx.camera.video.FileDescriptorOutputOptions>;
+        public getParcelFileDescriptor(): globalAndroid.os.ParcelFileDescriptor;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public toString(): string;
+      }
+      export module FileDescriptorOutputOptions {
+        export class Builder extends androidx.camera.video.OutputOptions.Builder<androidx.camera.video.FileDescriptorOutputOptions, androidx.camera.video.FileDescriptorOutputOptions.Builder> {
+          public static class: java.lang.Class<androidx.camera.video.FileDescriptorOutputOptions.Builder>;
+          public build(): androidx.camera.video.FileDescriptorOutputOptions;
+          public constructor(param0: globalAndroid.os.ParcelFileDescriptor);
+          public setFileSizeLimit(param0: number): any;
+          public setFileSizeLimit(param0: number): androidx.camera.video.FileDescriptorOutputOptions.Builder;
+        }
+        export abstract class FileDescriptorOutputOptionsInternal extends androidx.camera.video.OutputOptions.OutputOptionsInternal {
+          public static class: java.lang.Class<androidx.camera.video.FileDescriptorOutputOptions.FileDescriptorOutputOptionsInternal>;
+        }
+        export module FileDescriptorOutputOptionsInternal {
+          export abstract class Builder extends androidx.camera.video.OutputOptions.OutputOptionsInternal.Builder<androidx.camera.video.FileDescriptorOutputOptions.FileDescriptorOutputOptionsInternal.Builder> {
+            public static class: java.lang.Class<androidx.camera.video.FileDescriptorOutputOptions.FileDescriptorOutputOptionsInternal.Builder>;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class FileOutputOptions extends androidx.camera.video.OutputOptions {
+        public static class: java.lang.Class<androidx.camera.video.FileOutputOptions>;
+        public hashCode(): number;
+        public equals(param0: any): boolean;
+        public getFile(): java.io.File;
+        public toString(): string;
+      }
+      export module FileOutputOptions {
+        export class Builder extends androidx.camera.video.OutputOptions.Builder<androidx.camera.video.FileOutputOptions, androidx.camera.video.FileOutputOptions.Builder> {
+          public static class: java.lang.Class<androidx.camera.video.FileOutputOptions.Builder>;
+          public build(): androidx.camera.video.FileOutputOptions;
+          public setFileSizeLimit(param0: number): any;
+          public setFileSizeLimit(param0: number): androidx.camera.video.FileOutputOptions.Builder;
+          public constructor(param0: java.io.File);
+        }
+        export abstract class FileOutputOptionsInternal extends androidx.camera.video.OutputOptions.OutputOptionsInternal {
+          public static class: java.lang.Class<androidx.camera.video.FileOutputOptions.FileOutputOptionsInternal>;
+        }
+        export module FileOutputOptionsInternal {
+          export abstract class Builder extends androidx.camera.video.OutputOptions.OutputOptionsInternal.Builder<androidx.camera.video.FileOutputOptions.FileOutputOptionsInternal.Builder> {
+            public static class: java.lang.Class<androidx.camera.video.FileOutputOptions.FileOutputOptionsInternal.Builder>;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export abstract class MediaSpec {
+        public static class: java.lang.Class<androidx.camera.video.MediaSpec>;
+        public static OUTPUT_FORMAT_AUTO: number;
+        public static OUTPUT_FORMAT_MPEG_4: number;
+        public static OUTPUT_FORMAT_WEBM: number;
+        public getOutputFormat(): number;
+        public toBuilder(): androidx.camera.video.MediaSpec.Builder;
+        public static outputFormatToAudioMime(param0: number): string;
+        public static outputFormatToAudioProfile(param0: number): number;
+        public getVideoSpec(): androidx.camera.video.VideoSpec;
+        public static builder(): androidx.camera.video.MediaSpec.Builder;
+        public getAudioSpec(): androidx.camera.video.AudioSpec;
+        public static outputFormatToVideoMime(param0: number): string;
+      }
+      export module MediaSpec {
+        export abstract class Builder {
+          public static class: java.lang.Class<androidx.camera.video.MediaSpec.Builder>;
+          public setOutputFormat(param0: number): androidx.camera.video.MediaSpec.Builder;
+          public configureVideo(param0: androidx.core.util.Consumer<androidx.camera.video.VideoSpec.Builder>): androidx.camera.video.MediaSpec.Builder;
+          public setAudioSpec(param0: androidx.camera.video.AudioSpec): androidx.camera.video.MediaSpec.Builder;
+          public setVideoSpec(param0: androidx.camera.video.VideoSpec): androidx.camera.video.MediaSpec.Builder;
+          public configureAudio(param0: androidx.core.util.Consumer<androidx.camera.video.AudioSpec.Builder>): androidx.camera.video.MediaSpec.Builder;
+          public build(): androidx.camera.video.MediaSpec;
+        }
+        export class OutputFormat {
+          public static class: java.lang.Class<androidx.camera.video.MediaSpec.OutputFormat>;
+          /**
+           * Constructs a new instance of the androidx.camera.video.MediaSpec$OutputFormat interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+           */
+          public constructor(implementation: {});
+          public constructor();
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class MediaStoreOutputOptions extends androidx.camera.video.OutputOptions {
+        public static class: java.lang.Class<androidx.camera.video.MediaStoreOutputOptions>;
+        public static EMPTY_CONTENT_VALUES: globalAndroid.content.ContentValues;
+        public getContentValues(): globalAndroid.content.ContentValues;
+        public hashCode(): number;
+        public getCollectionUri(): globalAndroid.net.Uri;
+        public equals(param0: any): boolean;
+        public toString(): string;
+        public getContentResolver(): globalAndroid.content.ContentResolver;
+      }
+      export module MediaStoreOutputOptions {
+        export class Builder extends androidx.camera.video.OutputOptions.Builder<androidx.camera.video.MediaStoreOutputOptions, androidx.camera.video.MediaStoreOutputOptions.Builder> {
+          public static class: java.lang.Class<androidx.camera.video.MediaStoreOutputOptions.Builder>;
+          public constructor(param0: globalAndroid.content.ContentResolver, param1: globalAndroid.net.Uri);
+          public build(): androidx.camera.video.MediaStoreOutputOptions;
+          public setContentValues(param0: globalAndroid.content.ContentValues): androidx.camera.video.MediaStoreOutputOptions.Builder;
+          public setFileSizeLimit(param0: number): any;
+          public setFileSizeLimit(param0: number): androidx.camera.video.MediaStoreOutputOptions.Builder;
+        }
+        export abstract class MediaStoreOutputOptionsInternal extends androidx.camera.video.OutputOptions.OutputOptionsInternal {
+          public static class: java.lang.Class<androidx.camera.video.MediaStoreOutputOptions.MediaStoreOutputOptionsInternal>;
+        }
+        export module MediaStoreOutputOptionsInternal {
+          export abstract class Builder extends androidx.camera.video.OutputOptions.OutputOptionsInternal.Builder<androidx.camera.video.MediaStoreOutputOptions.MediaStoreOutputOptionsInternal.Builder> {
+            public static class: java.lang.Class<androidx.camera.video.MediaStoreOutputOptions.MediaStoreOutputOptionsInternal.Builder>;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export abstract class OutputOptions {
+        public static class: java.lang.Class<androidx.camera.video.OutputOptions>;
+        public static FILE_SIZE_UNLIMITED: number;
+        public getLocation(): globalAndroid.location.Location;
+        public getFileSizeLimit(): number;
+      }
+      export module OutputOptions {
+        export abstract class Builder<T, B> extends java.lang.Object {
+          public static class: java.lang.Class<androidx.camera.video.OutputOptions.Builder<any, any>>;
+          public setFileSizeLimit(param0: number): B;
+          public setLocation(param0: globalAndroid.location.Location): B;
+        }
+        export abstract class OutputOptionsInternal {
+          public static class: java.lang.Class<androidx.camera.video.OutputOptions.OutputOptionsInternal>;
+        }
+        export module OutputOptionsInternal {
+          export abstract class Builder<B> extends java.lang.Object {
+            public static class: java.lang.Class<androidx.camera.video.OutputOptions.OutputOptionsInternal.Builder<any>>;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export abstract class OutputResults {
+        public static class: java.lang.Class<androidx.camera.video.OutputResults>;
+        public getOutputUri(): globalAndroid.net.Uri;
+        public constructor();
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class PendingRecording {
+        public static class: java.lang.Class<androidx.camera.video.PendingRecording>;
+        public withAudioEnabled(): androidx.camera.video.PendingRecording;
+        public start(param0: java.util.concurrent.Executor, param1: androidx.core.util.Consumer<androidx.camera.video.VideoRecordEvent>): androidx.camera.video.Recording;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class Quality {
+        public static class: java.lang.Class<androidx.camera.video.Quality>;
+        public static SD: androidx.camera.video.Quality;
+        public static HD: androidx.camera.video.Quality;
+        public static FHD: androidx.camera.video.Quality;
+        public static UHD: androidx.camera.video.Quality;
+        public static LOWEST: androidx.camera.video.Quality;
+        public static HIGHEST: androidx.camera.video.Quality;
+      }
+      export module Quality {
+        export abstract class ConstantQuality extends androidx.camera.video.Quality {
+          public static class: java.lang.Class<androidx.camera.video.Quality.ConstantQuality>;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class QualitySelector {
+        public static class: java.lang.Class<androidx.camera.video.QualitySelector>;
+        public static fromOrderedList(param0: java.util.List<androidx.camera.video.Quality>, param1: androidx.camera.video.FallbackStrategy): androidx.camera.video.QualitySelector;
+        public static from(param0: androidx.camera.video.Quality): androidx.camera.video.QualitySelector;
+        public static getSupportedQualities(param0: androidx.camera.core.CameraInfo): java.util.List<androidx.camera.video.Quality>;
+        public static from(param0: androidx.camera.video.Quality, param1: androidx.camera.video.FallbackStrategy): androidx.camera.video.QualitySelector;
+        public static isQualitySupported(param0: androidx.camera.core.CameraInfo, param1: androidx.camera.video.Quality): boolean;
+        public toString(): string;
+        public static getResolution(param0: androidx.camera.core.CameraInfo, param1: androidx.camera.video.Quality): any;
+        public static fromOrderedList(param0: java.util.List<androidx.camera.video.Quality>): androidx.camera.video.QualitySelector;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class Recorder extends androidx.camera.video.VideoOutput {
+        public static class: java.lang.Class<androidx.camera.video.Recorder>;
+        public static DEFAULT_QUALITY_SELECTOR: androidx.camera.video.QualitySelector;
+        public getStreamInfo(): androidx.camera.core.impl.Observable<androidx.camera.video.StreamInfo>;
+        public getQualitySelector(): androidx.camera.video.QualitySelector;
+        public onSurfaceRequested(param0: androidx.camera.core.SurfaceRequest, param1: androidx.camera.core.impl.Timebase): void;
+        public getExecutor(): java.util.concurrent.Executor;
+        public getMediaSpec(): androidx.camera.core.impl.Observable<androidx.camera.video.MediaSpec>;
+        public prepareRecording(param0: globalAndroid.content.Context, param1: androidx.camera.video.FileOutputOptions): androidx.camera.video.PendingRecording;
+        public prepareRecording(param0: globalAndroid.content.Context, param1: androidx.camera.video.FileDescriptorOutputOptions): androidx.camera.video.PendingRecording;
+        public onSourceStateChanged(param0: androidx.camera.video.VideoOutput.SourceState): void;
+        public onSurfaceRequested(param0: androidx.camera.core.SurfaceRequest): void;
+        public prepareRecording(param0: globalAndroid.content.Context, param1: androidx.camera.video.MediaStoreOutputOptions): androidx.camera.video.PendingRecording;
+      }
+      export module Recorder {
+        export class AudioState {
+          public static class: java.lang.Class<androidx.camera.video.Recorder.AudioState>;
+          public static INITIALIZING: androidx.camera.video.Recorder.AudioState;
+          public static IDLING: androidx.camera.video.Recorder.AudioState;
+          public static DISABLED: androidx.camera.video.Recorder.AudioState;
+          public static ACTIVE: androidx.camera.video.Recorder.AudioState;
+          public static ERROR: androidx.camera.video.Recorder.AudioState;
+          public static valueOf(param0: string): androidx.camera.video.Recorder.AudioState;
+          public static values(): androidNative.Array<androidx.camera.video.Recorder.AudioState>;
+        }
+        export class Builder {
+          public static class: java.lang.Class<androidx.camera.video.Recorder.Builder>;
+          public constructor();
+          public setExecutor(param0: java.util.concurrent.Executor): androidx.camera.video.Recorder.Builder;
+          public build(): androidx.camera.video.Recorder;
+          public setQualitySelector(param0: androidx.camera.video.QualitySelector): androidx.camera.video.Recorder.Builder;
+        }
+        export abstract class RecordingRecord {
+          public static class: java.lang.Class<androidx.camera.video.Recorder.RecordingRecord>;
+          public finalize(): void;
+          public close(): void;
+        }
+        export module RecordingRecord {
+          export class AudioSourceSupplier {
+            public static class: java.lang.Class<androidx.camera.video.Recorder.RecordingRecord.AudioSourceSupplier>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.Recorder$RecordingRecord$AudioSourceSupplier interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { get(param0: androidx.camera.video.internal.AudioSource.Settings, param1: java.util.concurrent.Executor): androidx.camera.video.internal.AudioSource });
+            public constructor();
+            public get(param0: androidx.camera.video.internal.AudioSource.Settings, param1: java.util.concurrent.Executor): androidx.camera.video.internal.AudioSource;
+          }
+          export class MediaMuxerSupplier {
+            public static class: java.lang.Class<androidx.camera.video.Recorder.RecordingRecord.MediaMuxerSupplier>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.Recorder$RecordingRecord$MediaMuxerSupplier interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { get(param0: number, param1: androidx.core.util.Consumer<globalAndroid.net.Uri>): globalAndroid.media.MediaMuxer });
+            public constructor();
+            public get(param0: number, param1: androidx.core.util.Consumer<globalAndroid.net.Uri>): globalAndroid.media.MediaMuxer;
+          }
+        }
+        export class State {
+          public static class: java.lang.Class<androidx.camera.video.Recorder.State>;
+          public static INITIALIZING: androidx.camera.video.Recorder.State;
+          public static PENDING_RECORDING: androidx.camera.video.Recorder.State;
+          public static PENDING_PAUSED: androidx.camera.video.Recorder.State;
+          public static IDLING: androidx.camera.video.Recorder.State;
+          public static RECORDING: androidx.camera.video.Recorder.State;
+          public static PAUSED: androidx.camera.video.Recorder.State;
+          public static STOPPING: androidx.camera.video.Recorder.State;
+          public static RESETTING: androidx.camera.video.Recorder.State;
+          public static ERROR: androidx.camera.video.Recorder.State;
+          public static valueOf(param0: string): androidx.camera.video.Recorder.State;
+          public static values(): androidNative.Array<androidx.camera.video.Recorder.State>;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class Recording {
+        public static class: java.lang.Class<androidx.camera.video.Recording>;
+        public stop(): void;
+        public close(): void;
+        public resume(): void;
+        public pause(): void;
+        public finalize(): void;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export abstract class RecordingStats {
+        public static class: java.lang.Class<androidx.camera.video.RecordingStats>;
+        public getAudioStats(): androidx.camera.video.AudioStats;
+        public getNumBytesRecorded(): number;
+        public getRecordedDurationNanos(): number;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export abstract class StreamInfo {
+        public static class: java.lang.Class<androidx.camera.video.StreamInfo>;
+        public getStreamState(): androidx.camera.video.StreamInfo.StreamState;
+        public getId(): number;
+      }
+      export module StreamInfo {
+        export class StreamState {
+          public static class: java.lang.Class<androidx.camera.video.StreamInfo.StreamState>;
+          public static ACTIVE: androidx.camera.video.StreamInfo.StreamState;
+          public static INACTIVE: androidx.camera.video.StreamInfo.StreamState;
+          public static valueOf(param0: string): androidx.camera.video.StreamInfo.StreamState;
+          public static values(): androidNative.Array<androidx.camera.video.StreamInfo.StreamState>;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class VideoCapabilities {
+        public static class: java.lang.Class<androidx.camera.video.VideoCapabilities>;
+        public findHighestSupportedQualityFor(param0: any): androidx.camera.video.Quality;
+        public static from(param0: androidx.camera.core.CameraInfo): androidx.camera.video.VideoCapabilities;
+        public findHighestSupportedCamcorderProfileFor(param0: any): androidx.camera.core.impl.CamcorderProfileProxy;
+        public isQualitySupported(param0: androidx.camera.video.Quality): boolean;
+        public getSupportedQualities(): java.util.List<androidx.camera.video.Quality>;
+        public getProfile(param0: androidx.camera.video.Quality): androidx.camera.core.impl.CamcorderProfileProxy;
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class VideoCapture<T> extends androidx.camera.core.UseCase {
+        public static class: java.lang.Class<androidx.camera.video.VideoCapture<any>>;
+        public static withOutput(param0: androidx.camera.video.VideoOutput): androidx.camera.video.VideoCapture<any>;
+        public onMergeConfig(param0: androidx.camera.core.impl.CameraInfoInternal, param1: androidx.camera.core.impl.UseCaseConfig.Builder<any, any, any>): androidx.camera.core.impl.UseCaseConfig<any>;
+        public onStateAttached(): void;
+        public onStateDetached(): void;
+        public getUseCaseConfigBuilder(param0: androidx.camera.core.impl.Config): androidx.camera.core.impl.UseCaseConfig.Builder<any, any, any>;
+        public setViewPortCropRect(param0: globalAndroid.graphics.Rect): void;
+        public toString(): string;
+        public getOutput(): androidx.camera.video.Recorder;
+        public getDefaultConfig(param0: boolean, param1: androidx.camera.core.impl.UseCaseConfigFactory): androidx.camera.core.impl.UseCaseConfig<any>;
+        public getTargetRotation(): number;
+        public setTargetRotation(param0: number): void;
+        public setProcessor(param0: androidx.camera.core.processing.SurfaceProcessorInternal): void;
+        public onSuggestedResolutionUpdated(param0: any): any;
+        public onDetached(): void;
+      }
+      export module VideoCapture {
+        export class Builder<T> extends java.lang.Object {
+          public static class: java.lang.Class<androidx.camera.video.VideoCapture.Builder<any>>;
+          public setZslDisabled(param0: boolean): any;
+          public setTargetClass(param0: java.lang.Class<T>): any;
+          public setDefaultSessionConfig(param0: androidx.camera.core.impl.SessionConfig): androidx.camera.video.VideoCapture.Builder<T>;
+          public setZslDisabled(param0: boolean): androidx.camera.video.VideoCapture.Builder<T>;
+          public setSessionOptionUnpacker(param0: androidx.camera.core.impl.SessionConfig.OptionUnpacker): androidx.camera.video.VideoCapture.Builder<T>;
+          public setDefaultResolution(param0: any): any;
+          public getMutableConfig(): androidx.camera.core.impl.MutableConfig;
+          public getUseCaseConfig(): any;
+          public setCaptureOptionUnpacker(param0: androidx.camera.core.impl.CaptureConfig.OptionUnpacker): androidx.camera.video.VideoCapture.Builder<T>;
+          public getUseCaseConfig(): androidx.camera.video.impl.VideoCaptureConfig<T>;
+          public setSessionOptionUnpacker(param0: androidx.camera.core.impl.SessionConfig.OptionUnpacker): any;
+          public setTargetClass(param0: java.lang.Class<androidx.camera.video.VideoCapture<T>>): androidx.camera.video.VideoCapture.Builder<T>;
+          public setCameraSelector(param0: androidx.camera.core.CameraSelector): androidx.camera.video.VideoCapture.Builder<T>;
+          public setBackgroundExecutor(param0: java.util.concurrent.Executor): any;
+          public setTargetAspectRatio(param0: number): androidx.camera.video.VideoCapture.Builder<T>;
+          public setTargetResolution(param0: any): androidx.camera.video.VideoCapture.Builder<T>;
+          public setDefaultResolution(param0: any): androidx.camera.video.VideoCapture.Builder<T>;
+          public setUseCaseEventCallback(param0: androidx.camera.core.UseCase.EventCallback): androidx.camera.video.VideoCapture.Builder<T>;
+          public setMaxResolution(param0: any): any;
+          public setSupportedResolutions(param0: java.util.List<globalAndroid.util.Pair<java.lang.Integer, androidNative.Array<any>>>): any;
+          public setBackgroundExecutor(param0: java.util.concurrent.Executor): androidx.camera.video.VideoCapture.Builder<T>;
+          public setDefaultSessionConfig(param0: androidx.camera.core.impl.SessionConfig): any;
+          public setTargetRotation(param0: number): androidx.camera.video.VideoCapture.Builder<T>;
+          public setDefaultCaptureConfig(param0: androidx.camera.core.impl.CaptureConfig): any;
+          public setTargetRotation(param0: number): any;
+          public setSurfaceOccupancyPriority(param0: number): androidx.camera.video.VideoCapture.Builder<T>;
+          public static fromConfig(param0: androidx.camera.video.impl.VideoCaptureConfig<any>): androidx.camera.video.VideoCapture.Builder<any>;
+          public setMaxResolution(param0: any): androidx.camera.video.VideoCapture.Builder<T>;
+          public setCaptureOptionUnpacker(param0: androidx.camera.core.impl.CaptureConfig.OptionUnpacker): any;
+          public setSurfaceOccupancyPriority(param0: number): any;
+          public setTargetAspectRatio(param0: number): any;
+          public build(): androidx.camera.video.VideoCapture<T>;
+          public setTargetName(param0: string): any;
+          public setUseCaseEventCallback(param0: androidx.camera.core.UseCase.EventCallback): any;
+          public setSupportedResolutions(param0: java.util.List<globalAndroid.util.Pair<java.lang.Integer, androidNative.Array<any>>>): androidx.camera.video.VideoCapture.Builder<T>;
+          public setDefaultCaptureConfig(param0: androidx.camera.core.impl.CaptureConfig): androidx.camera.video.VideoCapture.Builder<T>;
+          public setTargetName(param0: string): androidx.camera.video.VideoCapture.Builder<T>;
+          public build(): T;
+          public setCameraSelector(param0: androidx.camera.core.CameraSelector): any;
+          public setTargetResolution(param0: any): any;
+        }
+        export class Defaults extends androidx.camera.core.impl.ConfigProvider<androidx.camera.video.impl.VideoCaptureConfig<any>> {
+          public static class: java.lang.Class<androidx.camera.video.VideoCapture.Defaults>;
+          public constructor();
+          public getConfig(): androidx.camera.video.impl.VideoCaptureConfig<any>;
+          public getConfig(): any;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export class VideoOutput {
+        public static class: java.lang.Class<androidx.camera.video.VideoOutput>;
+        /**
+         * Constructs a new instance of the androidx.camera.video.VideoOutput interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+         */
+        public constructor(implementation: { onSurfaceRequested(param0: androidx.camera.core.SurfaceRequest): void; onSurfaceRequested(param0: androidx.camera.core.SurfaceRequest, param1: androidx.camera.core.impl.Timebase): void; getStreamInfo(): androidx.camera.core.impl.Observable<androidx.camera.video.StreamInfo>; getMediaSpec(): androidx.camera.core.impl.Observable<androidx.camera.video.MediaSpec>; onSourceStateChanged(param0: androidx.camera.video.VideoOutput.SourceState): void });
+        public constructor();
+        public getStreamInfo(): androidx.camera.core.impl.Observable<androidx.camera.video.StreamInfo>;
+        public onSurfaceRequested(param0: androidx.camera.core.SurfaceRequest, param1: androidx.camera.core.impl.Timebase): void;
+        public getMediaSpec(): androidx.camera.core.impl.Observable<androidx.camera.video.MediaSpec>;
+        public onSourceStateChanged(param0: androidx.camera.video.VideoOutput.SourceState): void;
+        public onSurfaceRequested(param0: androidx.camera.core.SurfaceRequest): void;
+      }
+      export module VideoOutput {
+        export class SourceState {
+          public static class: java.lang.Class<androidx.camera.video.VideoOutput.SourceState>;
+          public static ACTIVE_STREAMING: androidx.camera.video.VideoOutput.SourceState;
+          public static ACTIVE_NON_STREAMING: androidx.camera.video.VideoOutput.SourceState;
+          public static INACTIVE: androidx.camera.video.VideoOutput.SourceState;
+          public static valueOf(param0: string): androidx.camera.video.VideoOutput.SourceState;
+          public static values(): androidNative.Array<androidx.camera.video.VideoOutput.SourceState>;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export abstract class VideoRecordEvent {
+        public static class: java.lang.Class<androidx.camera.video.VideoRecordEvent>;
+        public getRecordingStats(): androidx.camera.video.RecordingStats;
+        public getOutputOptions(): androidx.camera.video.OutputOptions;
+      }
+      export module VideoRecordEvent {
+        export class Finalize extends androidx.camera.video.VideoRecordEvent {
+          public static class: java.lang.Class<androidx.camera.video.VideoRecordEvent.Finalize>;
+          public static ERROR_NONE: number;
+          public static ERROR_UNKNOWN: number;
+          public static ERROR_FILE_SIZE_LIMIT_REACHED: number;
+          public static ERROR_INSUFFICIENT_STORAGE: number;
+          public static ERROR_SOURCE_INACTIVE: number;
+          public static ERROR_INVALID_OUTPUT_OPTIONS: number;
+          public static ERROR_ENCODING_FAILED: number;
+          public static ERROR_RECORDER_ERROR: number;
+          public static ERROR_NO_VALID_DATA: number;
+          public getError(): number;
+          public getOutputResults(): androidx.camera.video.OutputResults;
+          public hasError(): boolean;
+          public getCause(): java.lang.Throwable;
+        }
+        export module Finalize {
+          export class VideoRecordError {
+            public static class: java.lang.Class<androidx.camera.video.VideoRecordEvent.Finalize.VideoRecordError>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.VideoRecordEvent$Finalize$VideoRecordError interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: {});
+            public constructor();
+          }
+        }
+        export class Pause extends androidx.camera.video.VideoRecordEvent {
+          public static class: java.lang.Class<androidx.camera.video.VideoRecordEvent.Pause>;
+        }
+        export class Resume extends androidx.camera.video.VideoRecordEvent {
+          public static class: java.lang.Class<androidx.camera.video.VideoRecordEvent.Resume>;
+        }
+        export class Start extends androidx.camera.video.VideoRecordEvent {
+          public static class: java.lang.Class<androidx.camera.video.VideoRecordEvent.Start>;
+        }
+        export class Status extends androidx.camera.video.VideoRecordEvent {
+          public static class: java.lang.Class<androidx.camera.video.VideoRecordEvent.Status>;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export abstract class VideoSpec {
+        public static class: java.lang.Class<androidx.camera.video.VideoSpec>;
+        public static FRAME_RATE_RANGE_AUTO: globalAndroid.util.Range<java.lang.Integer>;
+        public static BITRATE_RANGE_AUTO: globalAndroid.util.Range<java.lang.Integer>;
+        public static QUALITY_SELECTOR_AUTO: androidx.camera.video.QualitySelector;
+        public getBitrate(): globalAndroid.util.Range<java.lang.Integer>;
+        public getQualitySelector(): androidx.camera.video.QualitySelector;
+        public static builder(): androidx.camera.video.VideoSpec.Builder;
+        public getFrameRate(): globalAndroid.util.Range<java.lang.Integer>;
+        public toBuilder(): androidx.camera.video.VideoSpec.Builder;
+      }
+      export module VideoSpec {
+        export abstract class Builder {
+          public static class: java.lang.Class<androidx.camera.video.VideoSpec.Builder>;
+          public setQualitySelector(param0: androidx.camera.video.QualitySelector): androidx.camera.video.VideoSpec.Builder;
+          public setFrameRate(param0: globalAndroid.util.Range<java.lang.Integer>): androidx.camera.video.VideoSpec.Builder;
+          public build(): androidx.camera.video.VideoSpec;
+          public setBitrate(param0: globalAndroid.util.Range<java.lang.Integer>): androidx.camera.video.VideoSpec.Builder;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module impl {
+        export class VideoCaptureConfig<T> extends java.lang.Object {
+          public static class: java.lang.Class<androidx.camera.video.impl.VideoCaptureConfig<any>>;
+          public static OPTION_VIDEO_OUTPUT: androidx.camera.core.impl.Config.Option<androidx.camera.video.VideoOutput>;
+          public static OPTION_VIDEO_ENCODER_INFO_FINDER: androidx.camera.core.impl.Config.Option<androidx.arch.core.util.Function<androidx.camera.video.internal.encoder.VideoEncoderConfig, androidx.camera.video.internal.encoder.VideoEncoderInfo>>;
+          public findOptions(param0: string, param1: androidx.camera.core.impl.Config.OptionMatcher): void;
+          public getMaxResolution(param0: any): any;
+          public getDefaultSessionConfig(param0: androidx.camera.core.impl.SessionConfig): androidx.camera.core.impl.SessionConfig;
+          public containsOption(param0: androidx.camera.core.impl.Config.Option<any>): boolean;
+          public retrieveOptionWithPriority(param0: androidx.camera.core.impl.Config.Option<any>, param1: androidx.camera.core.impl.Config.OptionPriority): any;
+          public constructor(param0: androidx.camera.core.impl.OptionsBundle);
+          public static hasConflict(param0: androidx.camera.core.impl.Config.OptionPriority, param1: androidx.camera.core.impl.Config.OptionPriority): boolean;
+          public getTargetResolution(param0: any): any;
+          public getDefaultCaptureConfig(): androidx.camera.core.impl.CaptureConfig;
+          public hasTargetAspectRatio(): boolean;
+          public getTargetRotation(param0: number): number;
+          public getInputFormat(): number;
+          public getTargetClass(): java.lang.Class<T>;
+          public getSupportedResolutions(): java.util.List<globalAndroid.util.Pair<java.lang.Integer, androidNative.Array<any>>>;
+          public isZslDisabled(param0: boolean): boolean;
+          public getSupportedResolutions(param0: java.util.List<globalAndroid.util.Pair<java.lang.Integer, androidNative.Array<any>>>): java.util.List<globalAndroid.util.Pair<java.lang.Integer, androidNative.Array<any>>>;
+          public getCameraSelector(param0: androidx.camera.core.CameraSelector): androidx.camera.core.CameraSelector;
+          public getSurfaceOccupancyPriority(): number;
+          public getBackgroundExecutor(param0: java.util.concurrent.Executor): java.util.concurrent.Executor;
+          public getTargetName(): string;
+          public getTargetClass(param0: java.lang.Class<T>): java.lang.Class<T>;
+          public getCaptureOptionUnpacker(): androidx.camera.core.impl.CaptureConfig.OptionUnpacker;
+          public getSessionOptionUnpacker(param0: androidx.camera.core.impl.SessionConfig.OptionUnpacker): androidx.camera.core.impl.SessionConfig.OptionUnpacker;
+          public getBackgroundExecutor(): java.util.concurrent.Executor;
+          public getTargetName(param0: string): string;
+          public getVideoEncoderInfoFinder(): androidx.arch.core.util.Function<androidx.camera.video.internal.encoder.VideoEncoderConfig, androidx.camera.video.internal.encoder.VideoEncoderInfo>;
+          public getCaptureOptionUnpacker(param0: androidx.camera.core.impl.CaptureConfig.OptionUnpacker): androidx.camera.core.impl.CaptureConfig.OptionUnpacker;
+          public getAppTargetRotation(param0: number): number;
+          public getDefaultSessionConfig(): androidx.camera.core.impl.SessionConfig;
+          public getTargetFramerate(param0: globalAndroid.util.Range<java.lang.Integer>): globalAndroid.util.Range<java.lang.Integer>;
+          public getCameraSelector(): androidx.camera.core.CameraSelector;
+          public getUseCaseEventCallback(param0: androidx.camera.core.UseCase.EventCallback): androidx.camera.core.UseCase.EventCallback;
+          public getOptionPriority(param0: androidx.camera.core.impl.Config.Option<any>): androidx.camera.core.impl.Config.OptionPriority;
+          public getDefaultResolution(param0: any): any;
+          public getTargetRotation(): number;
+          public retrieveOption(param0: androidx.camera.core.impl.Config.Option<any>, param1: any): any;
+          public getTargetAspectRatio(): number;
+          public getDefaultCaptureConfig(param0: androidx.camera.core.impl.CaptureConfig): androidx.camera.core.impl.CaptureConfig;
+          public getSurfaceOccupancyPriority(param0: number): number;
+          public listOptions(): java.util.Set<androidx.camera.core.impl.Config.Option<any>>;
+          public getVideoOutput(): T;
+          public getTargetResolution(): any;
+          public retrieveOption(param0: androidx.camera.core.impl.Config.Option<any>): any;
+          public getConfig(): androidx.camera.core.impl.Config;
+          public getSessionOptionUnpacker(): androidx.camera.core.impl.SessionConfig.OptionUnpacker;
+          public getMaxResolution(): any;
+          public getDefaultResolution(): any;
+          public getUseCaseEventCallback(): androidx.camera.core.UseCase.EventCallback;
+          public getPriorities(param0: androidx.camera.core.impl.Config.Option<any>): java.util.Set<androidx.camera.core.impl.Config.OptionPriority>;
+          public getTargetFramerate(): globalAndroid.util.Range<java.lang.Integer>;
+          public static mergeConfigs(param0: androidx.camera.core.impl.Config, param1: androidx.camera.core.impl.Config): androidx.camera.core.impl.Config;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export class AudioSource {
+          public static class: java.lang.Class<androidx.camera.video.internal.AudioSource>;
+          public static COMMON_SAMPLE_RATES: java.util.List<java.lang.Integer>;
+          public setBufferProvider(param0: androidx.camera.video.internal.BufferProvider<androidx.camera.video.internal.encoder.InputBuffer>): void;
+          public setAudioSourceCallback(param0: java.util.concurrent.Executor, param1: androidx.camera.video.internal.AudioSource.AudioSourceCallback): void;
+          public stop(): void;
+          public constructor(param0: androidx.camera.video.internal.AudioSource.Settings, param1: java.util.concurrent.Executor, param2: globalAndroid.content.Context);
+          public start(): void;
+          public static isSettingsSupported(param0: number, param1: number, param2: number): boolean;
+          public release(): com.google.common.util.concurrent.ListenableFuture<java.lang.Void>;
+        }
+        export module AudioSource {
+          export class AudioRecordingApi29Callback {
+            public static class: java.lang.Class<androidx.camera.video.internal.AudioSource.AudioRecordingApi29Callback>;
+            public onRecordingConfigChanged(param0: java.util.List<globalAndroid.media.AudioRecordingConfiguration>): void;
+          }
+          export class AudioSourceCallback {
+            public static class: java.lang.Class<androidx.camera.video.internal.AudioSource.AudioSourceCallback>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.AudioSource$AudioSourceCallback interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { onSilenced(param0: boolean): void; onError(param0: java.lang.Throwable): void });
+            public constructor();
+            public onSilenced(param0: boolean): void;
+            public onError(param0: java.lang.Throwable): void;
+          }
+          export class InternalState {
+            public static class: java.lang.Class<androidx.camera.video.internal.AudioSource.InternalState>;
+            public static CONFIGURED: androidx.camera.video.internal.AudioSource.InternalState;
+            public static STARTED: androidx.camera.video.internal.AudioSource.InternalState;
+            public static RELEASED: androidx.camera.video.internal.AudioSource.InternalState;
+            public static values(): androidNative.Array<androidx.camera.video.internal.AudioSource.InternalState>;
+            public static valueOf(param0: string): androidx.camera.video.internal.AudioSource.InternalState;
+          }
+          export abstract class Settings {
+            public static class: java.lang.Class<androidx.camera.video.internal.AudioSource.Settings>;
+            public getAudioSource(): number;
+            public getSampleRate(): number;
+            public toBuilder(): androidx.camera.video.internal.AudioSource.Settings.Builder;
+            public static builder(): androidx.camera.video.internal.AudioSource.Settings.Builder;
+            public getAudioFormat(): number;
+            public getChannelCount(): number;
+          }
+          export module Settings {
+            export abstract class Builder {
+              public static class: java.lang.Class<androidx.camera.video.internal.AudioSource.Settings.Builder>;
+              public setAudioSource(param0: number): androidx.camera.video.internal.AudioSource.Settings.Builder;
+              public setChannelCount(param0: number): androidx.camera.video.internal.AudioSource.Settings.Builder;
+              public build(): androidx.camera.video.internal.AudioSource.Settings;
+              public setAudioFormat(param0: number): androidx.camera.video.internal.AudioSource.Settings.Builder;
+              public setSampleRate(param0: number): androidx.camera.video.internal.AudioSource.Settings.Builder;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export class AudioSourceAccessException {
+          public static class: java.lang.Class<androidx.camera.video.internal.AudioSourceAccessException>;
+          public constructor(param0: string, param1: java.lang.Throwable);
+          public constructor(param0: string);
+          public constructor(param0: java.lang.Throwable);
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export class AutoValue_AudioSource_Settings extends androidx.camera.video.internal.AudioSource.Settings {
+          public static class: java.lang.Class<androidx.camera.video.internal.AutoValue_AudioSource_Settings>;
+          public equals(param0: any): boolean;
+          public getChannelCount(): number;
+          public toString(): string;
+          public toBuilder(): androidx.camera.video.internal.AudioSource.Settings.Builder;
+          public getAudioSource(): number;
+          public getSampleRate(): number;
+          public getAudioFormat(): number;
+          public hashCode(): number;
+        }
+        export module AutoValue_AudioSource_Settings {
+          export class Builder extends androidx.camera.video.internal.AudioSource.Settings.Builder {
+            public static class: java.lang.Class<androidx.camera.video.internal.AutoValue_AudioSource_Settings.Builder>;
+            public setAudioFormat(param0: number): androidx.camera.video.internal.AudioSource.Settings.Builder;
+            public setChannelCount(param0: number): androidx.camera.video.internal.AudioSource.Settings.Builder;
+            public setAudioSource(param0: number): androidx.camera.video.internal.AudioSource.Settings.Builder;
+            public setSampleRate(param0: number): androidx.camera.video.internal.AudioSource.Settings.Builder;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export class BufferProvider<T> extends androidx.camera.core.impl.Observable<androidx.camera.video.internal.BufferProvider.State> {
+          public static class: java.lang.Class<androidx.camera.video.internal.BufferProvider<any>>;
+          /**
+           * Constructs a new instance of the androidx.camera.video.internal.BufferProvider<any> interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+           */
+          public constructor(implementation: { acquireBuffer(): com.google.common.util.concurrent.ListenableFuture<any>; fetchData(): com.google.common.util.concurrent.ListenableFuture<any>; addObserver(param0: java.util.concurrent.Executor, param1: androidx.camera.core.impl.Observable.Observer<any>): void; removeObserver(param0: androidx.camera.core.impl.Observable.Observer<any>): void });
+          public constructor();
+          public acquireBuffer(): com.google.common.util.concurrent.ListenableFuture<any>;
+          public addObserver(param0: java.util.concurrent.Executor, param1: androidx.camera.core.impl.Observable.Observer<any>): void;
+          public fetchData(): com.google.common.util.concurrent.ListenableFuture<any>;
+          public removeObserver(param0: androidx.camera.core.impl.Observable.Observer<any>): void;
+        }
+        export module BufferProvider {
+          export class State {
+            public static class: java.lang.Class<androidx.camera.video.internal.BufferProvider.State>;
+            public static ACTIVE: androidx.camera.video.internal.BufferProvider.State;
+            public static INACTIVE: androidx.camera.video.internal.BufferProvider.State;
+            public static valueOf(param0: string): androidx.camera.video.internal.BufferProvider.State;
+            public static values(): androidNative.Array<androidx.camera.video.internal.BufferProvider.State>;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export class DebugUtils {
+          public static class: java.lang.Class<androidx.camera.video.internal.DebugUtils>;
+          public static dumpMediaCodecListForFormat(param0: globalAndroid.media.MediaCodecList, param1: globalAndroid.media.MediaFormat): string;
+          public static dumpCodecCapabilities(param0: string, param1: globalAndroid.media.MediaCodec, param2: globalAndroid.media.MediaFormat): string;
+          public static readableUs(param0: number): string;
+          public static readableMs(param0: number): string;
+          public static readableBufferInfo(param0: globalAndroid.media.MediaCodec.BufferInfo): string;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export class ResourceCreationException {
+          public static class: java.lang.Class<androidx.camera.video.internal.ResourceCreationException>;
+          public constructor(param0: string, param1: java.lang.Throwable);
+          public constructor(param0: string);
+          public constructor(param0: java.lang.Throwable);
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export class SharedByteBuffer {
+          public static class: java.lang.Class<androidx.camera.video.internal.SharedByteBuffer>;
+          public get(): java.nio.ByteBuffer;
+          public toString(): string;
+          public finalize(): void;
+          public close(): void;
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export class Api23Impl {
+            public static class: java.lang.Class<androidx.camera.video.internal.compat.Api23Impl>;
+            public static setAudioFormat(param0: globalAndroid.media.AudioRecord.Builder, param1: globalAndroid.media.AudioFormat): void;
+            public static createAudioRecordBuilder(): globalAndroid.media.AudioRecord.Builder;
+            public static setAudioSource(param0: globalAndroid.media.AudioRecord.Builder, param1: number): void;
+            public static build(param0: globalAndroid.media.AudioRecord.Builder): globalAndroid.media.AudioRecord;
+            public static setBufferSizeInBytes(param0: globalAndroid.media.AudioRecord.Builder, param1: number): void;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export class Api24Impl {
+            public static class: java.lang.Class<androidx.camera.video.internal.compat.Api24Impl>;
+            public static getTimestamp(param0: globalAndroid.media.AudioRecord, param1: globalAndroid.media.AudioTimestamp, param2: number): number;
+            public static getClientAudioSessionId(param0: globalAndroid.media.AudioRecordingConfiguration): number;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export class Api26Impl {
+            public static class: java.lang.Class<androidx.camera.video.internal.compat.Api26Impl>;
+            public static createMediaMuxer(param0: java.io.FileDescriptor, param1: number): globalAndroid.media.MediaMuxer;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export class Api28Impl {
+            public static class: java.lang.Class<androidx.camera.video.internal.compat.Api28Impl>;
+            public static getQualityRange(param0: globalAndroid.media.MediaCodecInfo.EncoderCapabilities): globalAndroid.util.Range<java.lang.Integer>;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export class Api29Impl {
+            public static class: java.lang.Class<androidx.camera.video.internal.compat.Api29Impl>;
+            public static registerAudioRecordingCallback(param0: globalAndroid.media.AudioRecord, param1: java.util.concurrent.Executor, param2: globalAndroid.media.AudioManager.AudioRecordingCallback): void;
+            public static isClientSilenced(param0: globalAndroid.media.AudioRecordingConfiguration): boolean;
+            public static unregisterAudioRecordingCallback(param0: globalAndroid.media.AudioRecord, param1: globalAndroid.media.AudioManager.AudioRecordingCallback): void;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export class Api31Impl {
+            public static class: java.lang.Class<androidx.camera.video.internal.compat.Api31Impl>;
+            public static getMinInputChannelCount(param0: globalAndroid.media.MediaCodecInfo.AudioCapabilities): number;
+            public static setContext(param0: globalAndroid.media.AudioRecord.Builder, param1: globalAndroid.content.Context): void;
+            public static getInputChannelCountRanges(param0: globalAndroid.media.MediaCodecInfo.AudioCapabilities): androidNative.Array<globalAndroid.util.Range<java.lang.Integer>>;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class AudioEncoderIgnoresInputTimestampQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.AudioEncoderIgnoresInputTimestampQuirk>;
+              public constructor();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class AudioTimestampFramePositionIncorrectQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.AudioTimestampFramePositionIncorrectQuirk>;
+              public constructor();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class CameraUseInconsistentTimebaseQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.CameraUseInconsistentTimebaseQuirk>;
+              public constructor();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class DeactivateEncoderSurfaceBeforeStopEncoderQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.DeactivateEncoderSurfaceBeforeStopEncoderQuirk>;
+              public constructor();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class DeviceQuirks {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.DeviceQuirks>;
+              public static getAll(): androidx.camera.core.impl.Quirks;
+              public static get(param0: java.lang.Class<any>): androidx.camera.core.impl.Quirk;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class DeviceQuirksLoader {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.DeviceQuirksLoader>;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class EncoderNotUsePersistentInputSurfaceQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.EncoderNotUsePersistentInputSurfaceQuirk>;
+              public constructor();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class ExcludeStretchedVideoQualityQuirk extends androidx.camera.video.internal.compat.quirk.VideoQualityQuirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.ExcludeStretchedVideoQualityQuirk>;
+              public constructor();
+              public isProblematicVideoQuality(param0: androidx.camera.video.Quality): boolean;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class ImageCaptureFailedWhenVideoCaptureIsBoundQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.ImageCaptureFailedWhenVideoCaptureIsBoundQuirk>;
+              public constructor();
+              public static isVivo1805(): boolean;
+              public static isItelW6004(): boolean;
+              public static isBluStudioX10(): boolean;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class MediaCodecInfoReportIncorrectInfoQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.MediaCodecInfoReportIncorrectInfoQuirk>;
+              public constructor();
+              public isUnSupportMediaCodecInfo(param0: globalAndroid.media.MediaFormat): boolean;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class MediaFormatMustNotUseFrameRateToFindEncoderQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.MediaFormatMustNotUseFrameRateToFindEncoderQuirk>;
+              public constructor();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class MediaStoreVideoCannotWrite extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.MediaStoreVideoCannotWrite>;
+              public constructor();
+              public static isPositivoTwist2Pro(): boolean;
+              public static isItelW6004(): boolean;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class NegativeLatLongSavesIncorrectlyQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.NegativeLatLongSavesIncorrectlyQuirk>;
+              public constructor();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class PreviewDelayWhenVideoCaptureIsBoundQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.PreviewDelayWhenVideoCaptureIsBoundQuirk>;
+              public constructor();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class PreviewStretchWhenVideoCaptureIsBoundQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.PreviewStretchWhenVideoCaptureIsBoundQuirk>;
+              public constructor();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class ReportedVideoQualityNotSupportedQuirk extends androidx.camera.video.internal.compat.quirk.VideoQualityQuirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.ReportedVideoQualityNotSupportedQuirk>;
+              public constructor();
+              public isProblematicVideoQuality(param0: androidx.camera.video.Quality): boolean;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class VideoEncoderCrashQuirk extends androidx.camera.video.internal.compat.quirk.VideoQualityQuirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.VideoEncoderCrashQuirk>;
+              public constructor();
+              public isProblematicVideoQuality(param0: androidx.camera.video.Quality): boolean;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class VideoEncoderSuspendDoesNotIncludeSuspendTimeQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.VideoEncoderSuspendDoesNotIncludeSuspendTimeQuirk>;
+              public constructor();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module compat {
+          export module quirk {
+            export class VideoQualityQuirk extends androidx.camera.core.impl.Quirk {
+              public static class: java.lang.Class<androidx.camera.video.internal.compat.quirk.VideoQualityQuirk>;
+              /**
+               * Constructs a new instance of the androidx.camera.video.internal.compat.quirk.VideoQualityQuirk interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+               */
+              public constructor(implementation: { isProblematicVideoQuality(param0: androidx.camera.video.Quality): boolean });
+              public constructor();
+              public isProblematicVideoQuality(param0: androidx.camera.video.Quality): boolean;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module config {
+          export class AudioConfigUtil {
+            public static class: java.lang.Class<androidx.camera.video.internal.config.AudioConfigUtil>;
+            public static resolveAudioSourceSettings(param0: androidx.camera.video.internal.config.MimeInfo, param1: androidx.camera.video.AudioSpec): androidx.camera.video.internal.AudioSource.Settings;
+            public static resolveAudioMimeInfo(param0: androidx.camera.video.MediaSpec, param1: androidx.camera.core.impl.CamcorderProfileProxy): androidx.camera.video.internal.config.MimeInfo;
+            public static resolveAudioEncoderConfig(param0: androidx.camera.video.internal.config.MimeInfo, param1: androidx.camera.core.impl.Timebase, param2: androidx.camera.video.internal.AudioSource.Settings, param3: androidx.camera.video.AudioSpec): androidx.camera.video.internal.encoder.AudioEncoderConfig;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module config {
+          export class AudioEncoderConfigCamcorderProfileResolver extends androidx.core.util.Supplier<androidx.camera.video.internal.encoder.AudioEncoderConfig> {
+            public static class: java.lang.Class<androidx.camera.video.internal.config.AudioEncoderConfigCamcorderProfileResolver>;
+            public constructor(param0: string, param1: number, param2: androidx.camera.core.impl.Timebase, param3: androidx.camera.video.AudioSpec, param4: androidx.camera.video.internal.AudioSource.Settings, param5: androidx.camera.core.impl.CamcorderProfileProxy);
+            public get(): androidx.camera.video.internal.encoder.AudioEncoderConfig;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module config {
+          export class AudioEncoderConfigDefaultResolver extends androidx.core.util.Supplier<androidx.camera.video.internal.encoder.AudioEncoderConfig> {
+            public static class: java.lang.Class<androidx.camera.video.internal.config.AudioEncoderConfigDefaultResolver>;
+            public constructor(param0: string, param1: number, param2: androidx.camera.core.impl.Timebase, param3: androidx.camera.video.AudioSpec, param4: androidx.camera.video.internal.AudioSource.Settings);
+            public get(): androidx.camera.video.internal.encoder.AudioEncoderConfig;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module config {
+          export class AudioSourceSettingsCamcorderProfileResolver extends androidx.core.util.Supplier<androidx.camera.video.internal.AudioSource.Settings> {
+            public static class: java.lang.Class<androidx.camera.video.internal.config.AudioSourceSettingsCamcorderProfileResolver>;
+            public constructor(param0: androidx.camera.video.AudioSpec, param1: androidx.camera.core.impl.CamcorderProfileProxy);
+            public get(): androidx.camera.video.internal.AudioSource.Settings;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module config {
+          export class AudioSourceSettingsDefaultResolver extends androidx.core.util.Supplier<androidx.camera.video.internal.AudioSource.Settings> {
+            public static class: java.lang.Class<androidx.camera.video.internal.config.AudioSourceSettingsDefaultResolver>;
+            public constructor(param0: androidx.camera.video.AudioSpec);
+            public get(): androidx.camera.video.internal.AudioSource.Settings;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module config {
+          export class AutoValue_MimeInfo extends androidx.camera.video.internal.config.MimeInfo {
+            public static class: java.lang.Class<androidx.camera.video.internal.config.AutoValue_MimeInfo>;
+            public getMimeType(): string;
+            public getCompatibleCamcorderProfile(): androidx.camera.core.impl.CamcorderProfileProxy;
+            public equals(param0: any): boolean;
+            public hashCode(): number;
+            public getProfile(): number;
+            public toString(): string;
+          }
+          export module AutoValue_MimeInfo {
+            export class Builder extends androidx.camera.video.internal.config.MimeInfo.Builder {
+              public static class: java.lang.Class<androidx.camera.video.internal.config.AutoValue_MimeInfo.Builder>;
+              public setCompatibleCamcorderProfile(param0: androidx.camera.core.impl.CamcorderProfileProxy): androidx.camera.video.internal.config.MimeInfo.Builder;
+              public setProfile(param0: number): androidx.camera.video.internal.config.MimeInfo.Builder;
+              public build(): androidx.camera.video.internal.config.MimeInfo;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module config {
+          export abstract class MimeInfo {
+            public static class: java.lang.Class<androidx.camera.video.internal.config.MimeInfo>;
+            public constructor();
+            public getMimeType(): string;
+            public getCompatibleCamcorderProfile(): androidx.camera.core.impl.CamcorderProfileProxy;
+            public static builder(param0: string): androidx.camera.video.internal.config.MimeInfo.Builder;
+            public getProfile(): number;
+          }
+          export module MimeInfo {
+            export abstract class Builder {
+              public static class: java.lang.Class<androidx.camera.video.internal.config.MimeInfo.Builder>;
+              public constructor();
+              public setCompatibleCamcorderProfile(param0: androidx.camera.core.impl.CamcorderProfileProxy): androidx.camera.video.internal.config.MimeInfo.Builder;
+              public setProfile(param0: number): androidx.camera.video.internal.config.MimeInfo.Builder;
+              public build(): androidx.camera.video.internal.config.MimeInfo;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module config {
+          export class VideoConfigUtil {
+            public static class: java.lang.Class<androidx.camera.video.internal.config.VideoConfigUtil>;
+            public static resolveVideoMimeInfo(param0: androidx.camera.video.MediaSpec, param1: androidx.camera.core.impl.CamcorderProfileProxy): androidx.camera.video.internal.config.MimeInfo;
+            public static resolveVideoEncoderConfig(param0: androidx.camera.video.internal.config.MimeInfo, param1: androidx.camera.core.impl.Timebase, param2: androidx.camera.video.VideoSpec, param3: any, param4: globalAndroid.util.Range<java.lang.Integer>): androidx.camera.video.internal.encoder.VideoEncoderConfig;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module config {
+          export class VideoEncoderConfigCamcorderProfileResolver extends androidx.core.util.Supplier<androidx.camera.video.internal.encoder.VideoEncoderConfig> {
+            public static class: java.lang.Class<androidx.camera.video.internal.config.VideoEncoderConfigCamcorderProfileResolver>;
+            public constructor(param0: string, param1: androidx.camera.core.impl.Timebase, param2: androidx.camera.video.VideoSpec, param3: any, param4: androidx.camera.core.impl.CamcorderProfileProxy, param5: globalAndroid.util.Range<java.lang.Integer>);
+            public get(): androidx.camera.video.internal.encoder.VideoEncoderConfig;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module config {
+          export class VideoEncoderConfigDefaultResolver extends androidx.core.util.Supplier<androidx.camera.video.internal.encoder.VideoEncoderConfig> {
+            public static class: java.lang.Class<androidx.camera.video.internal.config.VideoEncoderConfigDefaultResolver>;
+            public constructor(param0: string, param1: androidx.camera.core.impl.Timebase, param2: androidx.camera.video.VideoSpec, param3: any, param4: globalAndroid.util.Range<java.lang.Integer>);
+            public get(): androidx.camera.video.internal.encoder.VideoEncoderConfig;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export abstract class AudioEncoderConfig extends androidx.camera.video.internal.encoder.EncoderConfig {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.AudioEncoderConfig>;
+            public getSampleRate(): number;
+            public getMimeType(): string;
+            public getInputTimebase(): androidx.camera.core.impl.Timebase;
+            public static builder(): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+            public getBitrate(): number;
+            public toMediaFormat(): globalAndroid.media.MediaFormat;
+            public getProfile(): number;
+            public getChannelCount(): number;
+          }
+          export module AudioEncoderConfig {
+            export abstract class Builder {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder>;
+              public setChannelCount(param0: number): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+              public build(): androidx.camera.video.internal.encoder.AudioEncoderConfig;
+              public setInputTimebase(param0: androidx.camera.core.impl.Timebase): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+              public setMimeType(param0: string): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+              public setSampleRate(param0: number): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+              public setBitrate(param0: number): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+              public setProfile(param0: number): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class AudioEncoderInfo extends androidx.camera.video.internal.encoder.EncoderInfo {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.AudioEncoderInfo>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.encoder.AudioEncoderInfo interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { getBitrateRange(): globalAndroid.util.Range<java.lang.Integer>; getName(): string });
+            public constructor();
+            public getBitrateRange(): globalAndroid.util.Range<java.lang.Integer>;
+            public getName(): string;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class AudioEncoderInfoImpl extends androidx.camera.video.internal.encoder.EncoderInfoImpl implements androidx.camera.video.internal.encoder.AudioEncoderInfo {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.AudioEncoderInfoImpl>;
+            public getBitrateRange(): globalAndroid.util.Range<java.lang.Integer>;
+            public static from(param0: androidx.camera.video.internal.encoder.AudioEncoderConfig): androidx.camera.video.internal.encoder.AudioEncoderInfoImpl;
+            public getName(): string;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class AutoValue_AudioEncoderConfig extends androidx.camera.video.internal.encoder.AudioEncoderConfig {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.AutoValue_AudioEncoderConfig>;
+            public getSampleRate(): number;
+            public getMimeType(): string;
+            public getInputTimebase(): androidx.camera.core.impl.Timebase;
+            public equals(param0: any): boolean;
+            public hashCode(): number;
+            public getBitrate(): number;
+            public toMediaFormat(): globalAndroid.media.MediaFormat;
+            public getProfile(): number;
+            public getChannelCount(): number;
+            public toString(): string;
+          }
+          export module AutoValue_AudioEncoderConfig {
+            export class Builder extends androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.AutoValue_AudioEncoderConfig.Builder>;
+              public setChannelCount(param0: number): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+              public setInputTimebase(param0: androidx.camera.core.impl.Timebase): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+              public setMimeType(param0: string): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+              public setSampleRate(param0: number): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+              public setBitrate(param0: number): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+              public setProfile(param0: number): androidx.camera.video.internal.encoder.AudioEncoderConfig.Builder;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class AutoValue_VideoEncoderConfig extends androidx.camera.video.internal.encoder.VideoEncoderConfig {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.AutoValue_VideoEncoderConfig>;
+            public getMimeType(): string;
+            public getInputTimebase(): androidx.camera.core.impl.Timebase;
+            public getResolution(): any;
+            public equals(param0: any): boolean;
+            public hashCode(): number;
+            public getBitrate(): number;
+            public toMediaFormat(): globalAndroid.media.MediaFormat;
+            public getProfile(): number;
+            public getIFrameInterval(): number;
+            public toString(): string;
+            public getColorFormat(): number;
+            public getFrameRate(): number;
+          }
+          export module AutoValue_VideoEncoderConfig {
+            export class Builder extends androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.AutoValue_VideoEncoderConfig.Builder>;
+              public setResolution(param0: any): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setMimeType(param0: string): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setProfile(param0: number): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setColorFormat(param0: number): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setIFrameInterval(param0: number): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public build(): androidx.camera.video.internal.encoder.VideoEncoderConfig;
+              public setFrameRate(param0: number): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setBitrate(param0: number): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setInputTimebase(param0: androidx.camera.core.impl.Timebase): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class BufferCopiedEncodedData extends androidx.camera.video.internal.encoder.EncodedData {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.BufferCopiedEncodedData>;
+            public getByteBuffer(): java.nio.ByteBuffer;
+            public isKeyFrame(): boolean;
+            public close(): void;
+            public constructor(param0: androidx.camera.video.internal.encoder.EncodedData);
+            public getBufferInfo(): globalAndroid.media.MediaCodec.BufferInfo;
+            public size(): number;
+            public getPresentationTimeUs(): number;
+            public getClosedFuture(): com.google.common.util.concurrent.ListenableFuture<java.lang.Void>;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class EncodeException {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncodeException>;
+            public static ERROR_UNKNOWN: number;
+            public static ERROR_CODEC: number;
+            public constructor(param0: number, param1: string, param2: java.lang.Throwable);
+            public getErrorType(): number;
+          }
+          export module EncodeException {
+            export class ErrorType {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncodeException.ErrorType>;
+              /**
+               * Constructs a new instance of the androidx.camera.video.internal.encoder.EncodeException$ErrorType interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+               */
+              public constructor(implementation: {});
+              public constructor();
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class EncodedData {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncodedData>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.encoder.EncodedData interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { getByteBuffer(): java.nio.ByteBuffer; getBufferInfo(): globalAndroid.media.MediaCodec.BufferInfo; getPresentationTimeUs(): number; size(): number; isKeyFrame(): boolean; close(): void; getClosedFuture(): com.google.common.util.concurrent.ListenableFuture<java.lang.Void> });
+            public constructor();
+            public getByteBuffer(): java.nio.ByteBuffer;
+            public isKeyFrame(): boolean;
+            public close(): void;
+            public getBufferInfo(): globalAndroid.media.MediaCodec.BufferInfo;
+            public size(): number;
+            public getPresentationTimeUs(): number;
+            public getClosedFuture(): com.google.common.util.concurrent.ListenableFuture<java.lang.Void>;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class EncodedDataImpl extends androidx.camera.video.internal.encoder.EncodedData {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncodedDataImpl>;
+            public getByteBuffer(): java.nio.ByteBuffer;
+            public isKeyFrame(): boolean;
+            public close(): void;
+            public getBufferInfo(): globalAndroid.media.MediaCodec.BufferInfo;
+            public size(): number;
+            public getPresentationTimeUs(): number;
+            public getClosedFuture(): com.google.common.util.concurrent.ListenableFuture<java.lang.Void>;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class Encoder {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.Encoder>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.encoder.Encoder interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { getInput(): androidx.camera.video.internal.encoder.Encoder.EncoderInput; getEncoderInfo(): androidx.camera.video.internal.encoder.EncoderInfo; start(): void; stop(): void; stop(param0: number): void; pause(): void; release(): void; getReleasedFuture(): com.google.common.util.concurrent.ListenableFuture<java.lang.Void>; setEncoderCallback(param0: androidx.camera.video.internal.encoder.EncoderCallback, param1: java.util.concurrent.Executor): void; requestKeyFrame(): void });
+            public constructor();
+            public getEncoderInfo(): androidx.camera.video.internal.encoder.EncoderInfo;
+            public start(): void;
+            public pause(): void;
+            public setEncoderCallback(param0: androidx.camera.video.internal.encoder.EncoderCallback, param1: java.util.concurrent.Executor): void;
+            public getReleasedFuture(): com.google.common.util.concurrent.ListenableFuture<java.lang.Void>;
+            public release(): void;
+            public stop(): void;
+            public getInput(): androidx.camera.video.internal.encoder.Encoder.EncoderInput;
+            public stop(param0: number): void;
+            public requestKeyFrame(): void;
+          }
+          export module Encoder {
+            export class ByteBufferInput extends java.lang.Object {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.Encoder.ByteBufferInput>;
+              /**
+               * Constructs a new instance of the androidx.camera.video.internal.encoder.Encoder$ByteBufferInput interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+               */
+              public constructor(implementation: { acquireBuffer(): com.google.common.util.concurrent.ListenableFuture<any>; fetchData(): com.google.common.util.concurrent.ListenableFuture<any>; addObserver(param0: java.util.concurrent.Executor, param1: androidx.camera.core.impl.Observable.Observer<any>): void; removeObserver(param0: androidx.camera.core.impl.Observable.Observer<any>): void });
+              public constructor();
+              public removeObserver(param0: androidx.camera.core.impl.Observable.Observer<any>): void;
+              public addObserver(param0: java.util.concurrent.Executor, param1: androidx.camera.core.impl.Observable.Observer<any>): void;
+              public acquireBuffer(): com.google.common.util.concurrent.ListenableFuture<any>;
+              public fetchData(): com.google.common.util.concurrent.ListenableFuture<any>;
+            }
+            export class EncoderInput {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.Encoder.EncoderInput>;
+              /**
+               * Constructs a new instance of the androidx.camera.video.internal.encoder.Encoder$EncoderInput interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+               */
+              public constructor(implementation: {});
+              public constructor();
+            }
+            export class SurfaceInput extends androidx.camera.video.internal.encoder.Encoder.EncoderInput {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.Encoder.SurfaceInput>;
+              /**
+               * Constructs a new instance of the androidx.camera.video.internal.encoder.Encoder$SurfaceInput interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+               */
+              public constructor(implementation: { setOnSurfaceUpdateListener(param0: java.util.concurrent.Executor, param1: androidx.camera.video.internal.encoder.Encoder.SurfaceInput.OnSurfaceUpdateListener): void });
+              public constructor();
+              public setOnSurfaceUpdateListener(param0: java.util.concurrent.Executor, param1: androidx.camera.video.internal.encoder.Encoder.SurfaceInput.OnSurfaceUpdateListener): void;
+            }
+            export module SurfaceInput {
+              export class OnSurfaceUpdateListener {
+                public static class: java.lang.Class<androidx.camera.video.internal.encoder.Encoder.SurfaceInput.OnSurfaceUpdateListener>;
+                /**
+                 * Constructs a new instance of the androidx.camera.video.internal.encoder.Encoder$SurfaceInput$OnSurfaceUpdateListener interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+                 */
+                public constructor(implementation: { onSurfaceUpdate(param0: globalAndroid.view.Surface): void });
+                public constructor();
+                public onSurfaceUpdate(param0: globalAndroid.view.Surface): void;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class EncoderCallback {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncoderCallback>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.encoder.EncoderCallback interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { onEncodeStart(): void; onEncodeStop(): void; onEncodePaused(): void; onEncodeError(param0: androidx.camera.video.internal.encoder.EncodeException): void; onEncodedData(param0: androidx.camera.video.internal.encoder.EncodedData): void; onOutputConfigUpdate(param0: androidx.camera.video.internal.encoder.OutputConfig): void; '<clinit>'(): void });
+            public constructor();
+            public static EMPTY: androidx.camera.video.internal.encoder.EncoderCallback;
+            public onOutputConfigUpdate(param0: androidx.camera.video.internal.encoder.OutputConfig): void;
+            public onEncodeError(param0: androidx.camera.video.internal.encoder.EncodeException): void;
+            public onEncodedData(param0: androidx.camera.video.internal.encoder.EncodedData): void;
+            public onEncodeStart(): void;
+            public onEncodePaused(): void;
+            public onEncodeStop(): void;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class EncoderConfig {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncoderConfig>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.encoder.EncoderConfig interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { getMimeType(): string; getProfile(): number; getInputTimebase(): androidx.camera.core.impl.Timebase; toMediaFormat(): globalAndroid.media.MediaFormat; '<clinit>'(): void });
+            public constructor();
+            public static CODEC_PROFILE_NONE: number;
+            public getMimeType(): string;
+            public getInputTimebase(): androidx.camera.core.impl.Timebase;
+            public toMediaFormat(): globalAndroid.media.MediaFormat;
+            public getProfile(): number;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class EncoderFactory {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncoderFactory>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.encoder.EncoderFactory interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { createEncoder(param0: java.util.concurrent.Executor, param1: androidx.camera.video.internal.encoder.EncoderConfig): androidx.camera.video.internal.encoder.Encoder });
+            public constructor();
+            public createEncoder(param0: java.util.concurrent.Executor, param1: androidx.camera.video.internal.encoder.EncoderConfig): androidx.camera.video.internal.encoder.Encoder;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class EncoderImpl extends androidx.camera.video.internal.encoder.Encoder {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncoderImpl>;
+            public getEncoderInfo(): androidx.camera.video.internal.encoder.EncoderInfo;
+            public start(): void;
+            public pause(): void;
+            public setEncoderCallback(param0: androidx.camera.video.internal.encoder.EncoderCallback, param1: java.util.concurrent.Executor): void;
+            public signalSourceStopped(): void;
+            public getReleasedFuture(): com.google.common.util.concurrent.ListenableFuture<java.lang.Void>;
+            public release(): void;
+            public stop(): void;
+            public getInput(): androidx.camera.video.internal.encoder.Encoder.EncoderInput;
+            public stop(param0: number): void;
+            public constructor(param0: java.util.concurrent.Executor, param1: androidx.camera.video.internal.encoder.EncoderConfig);
+            public requestKeyFrame(): void;
+          }
+          export module EncoderImpl {
+            export class Api23Impl {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncoderImpl.Api23Impl>;
+            }
+            export class ByteBufferInput extends androidx.camera.video.internal.encoder.Encoder.ByteBufferInput {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncoderImpl.ByteBufferInput>;
+              public acquireBuffer(): com.google.common.util.concurrent.ListenableFuture<androidx.camera.video.internal.encoder.InputBuffer>;
+              public removeObserver(param0: androidx.camera.core.impl.Observable.Observer<any>): void;
+              public addObserver(param0: java.util.concurrent.Executor, param1: androidx.camera.core.impl.Observable.Observer<any>): void;
+              public fetchData(): com.google.common.util.concurrent.ListenableFuture<androidx.camera.video.internal.BufferProvider.State>;
+              public acquireBuffer(): com.google.common.util.concurrent.ListenableFuture<any>;
+              public fetchData(): com.google.common.util.concurrent.ListenableFuture<any>;
+            }
+            export class InternalState {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncoderImpl.InternalState>;
+              public static CONFIGURED: androidx.camera.video.internal.encoder.EncoderImpl.InternalState;
+              public static STARTED: androidx.camera.video.internal.encoder.EncoderImpl.InternalState;
+              public static PAUSED: androidx.camera.video.internal.encoder.EncoderImpl.InternalState;
+              public static STOPPING: androidx.camera.video.internal.encoder.EncoderImpl.InternalState;
+              public static PENDING_START: androidx.camera.video.internal.encoder.EncoderImpl.InternalState;
+              public static PENDING_START_PAUSED: androidx.camera.video.internal.encoder.EncoderImpl.InternalState;
+              public static PENDING_RELEASE: androidx.camera.video.internal.encoder.EncoderImpl.InternalState;
+              public static ERROR: androidx.camera.video.internal.encoder.EncoderImpl.InternalState;
+              public static RELEASED: androidx.camera.video.internal.encoder.EncoderImpl.InternalState;
+              public static values(): androidNative.Array<androidx.camera.video.internal.encoder.EncoderImpl.InternalState>;
+              public static valueOf(param0: string): androidx.camera.video.internal.encoder.EncoderImpl.InternalState;
+            }
+            export class MediaCodecCallback {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncoderImpl.MediaCodecCallback>;
+              public onOutputFormatChanged(param0: globalAndroid.media.MediaCodec, param1: globalAndroid.media.MediaFormat): void;
+              public onInputBufferAvailable(param0: globalAndroid.media.MediaCodec, param1: number): void;
+              public onError(param0: globalAndroid.media.MediaCodec, param1: globalAndroid.media.MediaCodec.CodecException): void;
+              public onOutputBufferAvailable(param0: globalAndroid.media.MediaCodec, param1: number, param2: globalAndroid.media.MediaCodec.BufferInfo): void;
+            }
+            export class SurfaceInput extends androidx.camera.video.internal.encoder.Encoder.SurfaceInput {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncoderImpl.SurfaceInput>;
+              public setOnSurfaceUpdateListener(param0: java.util.concurrent.Executor, param1: androidx.camera.video.internal.encoder.Encoder.SurfaceInput.OnSurfaceUpdateListener): void;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class EncoderInfo {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncoderInfo>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.encoder.EncoderInfo interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { getName(): string });
+            public constructor();
+            public getName(): string;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export abstract class EncoderInfoImpl extends androidx.camera.video.internal.encoder.EncoderInfo {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.EncoderInfoImpl>;
+            public mCodecCapabilities: globalAndroid.media.MediaCodecInfo.CodecCapabilities;
+            public getName(): string;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class InputBuffer {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.InputBuffer>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.encoder.InputBuffer interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { getByteBuffer(): java.nio.ByteBuffer; setPresentationTimeUs(param0: number): void; setEndOfStream(param0: boolean): void; submit(): boolean; cancel(): boolean; getTerminationFuture(): com.google.common.util.concurrent.ListenableFuture<java.lang.Void> });
+            public constructor();
+            public getByteBuffer(): java.nio.ByteBuffer;
+            public setEndOfStream(param0: boolean): void;
+            public setPresentationTimeUs(param0: number): void;
+            public getTerminationFuture(): com.google.common.util.concurrent.ListenableFuture<java.lang.Void>;
+            public submit(): boolean;
+            public cancel(): boolean;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class InputBufferImpl extends androidx.camera.video.internal.encoder.InputBuffer {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.InputBufferImpl>;
+            public getByteBuffer(): java.nio.ByteBuffer;
+            public setEndOfStream(param0: boolean): void;
+            public setPresentationTimeUs(param0: number): void;
+            public getTerminationFuture(): com.google.common.util.concurrent.ListenableFuture<java.lang.Void>;
+            public submit(): boolean;
+            public cancel(): boolean;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class InvalidConfigException {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.InvalidConfigException>;
+            public constructor(param0: java.lang.Throwable);
+            public constructor(param0: string, param1: java.lang.Throwable);
+            public constructor(param0: string);
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class OutputConfig {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.OutputConfig>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.encoder.OutputConfig interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { getMediaFormat(): globalAndroid.media.MediaFormat });
+            public constructor();
+            public getMediaFormat(): globalAndroid.media.MediaFormat;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class SystemTimeProvider extends androidx.camera.video.internal.encoder.TimeProvider {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.SystemTimeProvider>;
+            public uptimeUs(): number;
+            public constructor();
+            public realtimeUs(): number;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class TimeProvider {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.TimeProvider>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.encoder.TimeProvider interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { uptimeUs(): number; realtimeUs(): number });
+            public constructor();
+            public uptimeUs(): number;
+            public realtimeUs(): number;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export abstract class VideoEncoderConfig extends androidx.camera.video.internal.encoder.EncoderConfig {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.VideoEncoderConfig>;
+            public getMimeType(): string;
+            public getInputTimebase(): androidx.camera.core.impl.Timebase;
+            public getResolution(): any;
+            public static builder(): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+            public getBitrate(): number;
+            public toMediaFormat(): globalAndroid.media.MediaFormat;
+            public getProfile(): number;
+            public getIFrameInterval(): number;
+            public getColorFormat(): number;
+            public getFrameRate(): number;
+          }
+          export module VideoEncoderConfig {
+            export abstract class Builder {
+              public static class: java.lang.Class<androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder>;
+              public setResolution(param0: any): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setMimeType(param0: string): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setProfile(param0: number): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setColorFormat(param0: number): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setIFrameInterval(param0: number): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public build(): androidx.camera.video.internal.encoder.VideoEncoderConfig;
+              public setFrameRate(param0: number): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setBitrate(param0: number): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+              public setInputTimebase(param0: androidx.camera.core.impl.Timebase): androidx.camera.video.internal.encoder.VideoEncoderConfig.Builder;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class VideoEncoderInfo extends androidx.camera.video.internal.encoder.EncoderInfo {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.VideoEncoderInfo>;
+            /**
+             * Constructs a new instance of the androidx.camera.video.internal.encoder.VideoEncoderInfo interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+             */
+            public constructor(implementation: { getSupportedWidths(): globalAndroid.util.Range<java.lang.Integer>; getSupportedHeights(): globalAndroid.util.Range<java.lang.Integer>; getSupportedWidthsFor(param0: number): globalAndroid.util.Range<java.lang.Integer>; getSupportedHeightsFor(param0: number): globalAndroid.util.Range<java.lang.Integer>; getWidthAlignment(): number; getHeightAlignment(): number; getName(): string });
+            public constructor();
+            public getSupportedWidthsFor(param0: number): globalAndroid.util.Range<java.lang.Integer>;
+            public getSupportedWidths(): globalAndroid.util.Range<java.lang.Integer>;
+            public getSupportedHeightsFor(param0: number): globalAndroid.util.Range<java.lang.Integer>;
+            public getHeightAlignment(): number;
+            public getSupportedHeights(): globalAndroid.util.Range<java.lang.Integer>;
+            public getWidthAlignment(): number;
+            public getName(): string;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module encoder {
+          export class VideoEncoderInfoImpl extends androidx.camera.video.internal.encoder.EncoderInfoImpl implements androidx.camera.video.internal.encoder.VideoEncoderInfo {
+            public static class: java.lang.Class<androidx.camera.video.internal.encoder.VideoEncoderInfoImpl>;
+            public static from(param0: androidx.camera.video.internal.encoder.VideoEncoderConfig): androidx.camera.video.internal.encoder.VideoEncoderInfoImpl;
+            public getSupportedWidthsFor(param0: number): globalAndroid.util.Range<java.lang.Integer>;
+            public getSupportedWidths(): globalAndroid.util.Range<java.lang.Integer>;
+            public getSupportedHeightsFor(param0: number): globalAndroid.util.Range<java.lang.Integer>;
+            public getHeightAlignment(): number;
+            public getSupportedHeights(): globalAndroid.util.Range<java.lang.Integer>;
+            public getWidthAlignment(): number;
+            public getName(): string;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module utils {
+          export class OutputUtil {
+            public static class: java.lang.Class<androidx.camera.video.internal.utils.OutputUtil>;
+            public static createParentFolder(param0: java.io.File): boolean;
+            public static getAbsolutePathFromUri(param0: globalAndroid.content.ContentResolver, param1: globalAndroid.net.Uri, param2: string): string;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module workaround {
+          export class CorrectNegativeLatLongForMediaMuxer {
+            public static class: java.lang.Class<androidx.camera.video.internal.workaround.CorrectNegativeLatLongForMediaMuxer>;
+            public static adjustGeoLocation(param0: number, param1: number): globalAndroid.util.Pair<java.lang.Double, java.lang.Double>;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module workaround {
+          export class EncoderFinder {
+            public static class: java.lang.Class<androidx.camera.video.internal.workaround.EncoderFinder>;
+            public constructor();
+            public findEncoder(param0: globalAndroid.media.MediaFormat): globalAndroid.media.MediaCodec;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module workaround {
+          export class VideoEncoderInfoWrapper extends androidx.camera.video.internal.encoder.VideoEncoderInfo {
+            public static class: java.lang.Class<androidx.camera.video.internal.workaround.VideoEncoderInfoWrapper>;
+            public getSupportedWidthsFor(param0: number): globalAndroid.util.Range<java.lang.Integer>;
+            public getSupportedWidths(): globalAndroid.util.Range<java.lang.Integer>;
+            public getSupportedHeightsFor(param0: number): globalAndroid.util.Range<java.lang.Integer>;
+            public getHeightAlignment(): number;
+            public static from(param0: androidx.camera.video.internal.encoder.VideoEncoderInfo, param1: any): androidx.camera.video.internal.encoder.VideoEncoderInfo;
+            public getSupportedHeights(): globalAndroid.util.Range<java.lang.Integer>;
+            public getWidthAlignment(): number;
+            public getName(): string;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
+    export module video {
+      export module internal {
+        export module workaround {
+          export class VideoTimebaseConverter {
+            public static class: java.lang.Class<androidx.camera.video.internal.workaround.VideoTimebaseConverter>;
+            public constructor(param0: androidx.camera.video.internal.encoder.TimeProvider, param1: androidx.camera.core.impl.Timebase);
+            public convertToUptimeUs(param0: number): number;
+          }
+        }
+      }
+    }
+  }
+}
+
+declare module androidx {
+  export module camera {
     export module view {
       export abstract class CameraController {
         public static class: java.lang.Class<androidx.camera.view.CameraController>;
@@ -12872,4 +15409,10 @@ declare module androidx {
 //androidx.camera.core.processing.Node:2
 //androidx.camera.core.processing.Operation:2
 //androidx.camera.core.processing.Packet:1
+//androidx.camera.video.OutputOptions.Builder:2
+//androidx.camera.video.OutputOptions.OutputOptionsInternal.Builder:1
+//androidx.camera.video.VideoCapture:1
+//androidx.camera.video.VideoCapture.Builder:1
+//androidx.camera.video.impl.VideoCaptureConfig:1
+//androidx.camera.video.internal.BufferProvider:1
 //androidx.camera.view.ForwardingLiveData:1

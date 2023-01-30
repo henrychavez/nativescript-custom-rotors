@@ -7,6 +7,9 @@
         <voicethread:Camera2 loaded="{{ onCameraLoad }}"></voicethread:Camera2>
         <StackLayout row="1">
         <button class="btn btn-primary"  text="take photo" tap="{{ takePhoto }}"></button>
+        <button class="btn btn-primary"  text="capture video" tap="{{ captureVideo }}"></button>
+        <button class="btn btn-primary"  text="pause video" tap="{{ pauseVideo }}"></button>
+        <button class="btn btn-primary"  text="resume video" tap="{{ resumeVideo }}"></button>
         <button class="btn btn-primary" text="switch camera" tap="{{ switchCamera }}"></button>
         <button class="btn btn-primary" text="toggle flash" tap="{{ toggleFlash }}"></button>
         </StackLayout>
