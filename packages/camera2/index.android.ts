@@ -1,7 +1,8 @@
-import { Observable, Subject } from 'rxjs';
-import { Camera2Common } from './common';
+import { concatMap, from, Observable, Subject, tap } from 'rxjs';
+import { request as requestPermission } from '@nativescript-community/perms';
+
+import { Camera2Common, TakePhotoEventData } from './common';
 import { Camera2ConfigService } from './core';
-import { TakePhotoEventData } from '.';
 
 declare type CameraSelector = androidx.camera.core.CameraSelector;
 
@@ -20,7 +21,7 @@ export class Camera2 extends Camera2Common {
   private pendingRecording!: androidx.camera.video.PendingRecording;
   private recording!: androidx.camera.video.Recording;
 
-  public createNativeView(): any {
+  public createNativeView(): androidx.camera.view.PreviewView {
     this.nativeView = new androidx.camera.view.PreviewView(this._context);
     return this.nativeView;
   }
@@ -28,11 +29,18 @@ export class Camera2 extends Camera2Common {
   initNativeView() {
     const hasCamera = (this._context as android.content.Context).getPackageManager().hasSystemFeature(android.content.pm.PackageManager.FEATURE_CAMERA);
 
-    // const ctx = Utils.ad.getApplicationContext();
-
-    // if (ctx.checkSelfPermission(android.Manifest.permission.CAMERA) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
-    //   console.log('not granted');
-    // }
+    // Request permissions
+    from(requestPermission('camera'))
+      .pipe(
+        concatMap(() => from(requestPermission('microphone'))),
+        concatMap(() => from(requestPermission('photo')))
+      )
+      .pipe(
+        tap((response) => {
+          console.log('permission event', response);
+        })
+      )
+      .subscribe();
 
     if (hasCamera) {
       // Start Camera
@@ -49,8 +57,6 @@ export class Camera2 extends Camera2Common {
     const contentValues = new android.content.ContentValues();
     contentValues.put(android.provider.MediaStore.MediaColumns.DISPLAY_NAME, name);
     contentValues.put(android.provider.MediaStore.MediaColumns.MIME_TYPE, 'image/jpeg');
-
-    // const contentResolver = new android.content.ContentResolver.
 
     if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.P) {
       contentValues.put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, `Pictures/${Camera2ConfigService.instance.folderName}`);
@@ -86,10 +92,7 @@ export class Camera2 extends Camera2Common {
   }
 
   captureVideo() {
-    //   val videoCapture = this.videoCapture ?: return
     if (!this.videoCapture) return;
-    //  viewBinding.videoCaptureButton.isEnabled = false
-    //  val curRecording = recording
     const curRecording = this.recording;
     if (curRecording != null) {
       // Stop the current recording session.
@@ -163,12 +166,11 @@ export class Camera2 extends Camera2Common {
 
   toggleFlash(): void {
     const cameraControl = this.camera.getCameraControl();
-    // this.preview.
     this.torchEnabled = !this.torchEnabled;
     cameraControl.enableTorch(this.torchEnabled);
   }
 
-  private startCamera() {
+  startCamera() {
     const cameraProviderFuture = androidx.camera.lifecycle.ProcessCameraProvider.getInstance(this._context);
 
     cameraProviderFuture.addListener(
@@ -177,9 +179,6 @@ export class Camera2 extends Camera2Common {
           this.cameraProvider = cameraProviderFuture.get();
           this.preview = new androidx.camera.core.Preview.Builder().build();
           // Select back camera as a default
-          // this.cameraSelector = androidx.camera.core.CameraSelector.DEFAULT_BACK_CAMERA;
-
-          // this.imageCapture = builder.setTargetRotation(Utils.ad.getApplicationContext().getResources().getConfiguration().orientation).build();
           this.imageCapture = new androidx.camera.core.ImageCapture.Builder().build();
           const recorder = new androidx.camera.video.Recorder.Builder() //
             .setQualitySelector(androidx.camera.video.QualitySelector.from(androidx.camera.video.Quality.HD))

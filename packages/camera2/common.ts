@@ -8,6 +8,7 @@ export type TakePhotoEventData = {
 
 export abstract class Camera2Common extends ContentView {
   abstract takePhoto(): Observable<TakePhotoEventData>;
+  abstract startCamera(): void;
   abstract switchCamera(): void;
   abstract toggleFlash(): void;
   abstract captureVideo(): void;

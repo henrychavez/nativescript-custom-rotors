@@ -13,7 +13,8 @@
     "sync-packages-with-demos": "nx g @nativescript/plugin-tools:sync-packages-with-demos",
     "remove-package": "nx g @nativescript/plugin-tools:remove-package",
     "add-demo": "nx g @nativescript/plugin-tools:add-demo",
-    "demo.android": "nx run demo:android"
+    "demo.android": "nx run demo:android",
+    "demo.ios": "nx run demo:ios"
   },
   "private": true,
   "devDependencies": {
@@ -29,10 +30,12 @@
     "@angular/router": "^14.0.0",
     "@nativescript/angular": "^14.0.0",
     "@nativescript/core": "~8.2.0",
+    "@nativescript/ios": "8.3.3",
     "@nativescript/plugin-tools": "~5.0.0",
     "@nativescript/types": "~8.2.0",
     "@nativescript/webpack": "~5.0.5",
     "@ngtools/webpack": "^14.0.0",
+    "@nrwl/cli": "^15.6.3",
     "husky": "^8.0.0",
     "nativescript-vue": "~2.9.0",
     "nativescript-vue-template-compiler": "~2.9.0",
