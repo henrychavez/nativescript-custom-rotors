@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-new */
+
 declare class PreviewView extends UIView {
   static alloc(): PreviewView; // inherited from NSObject
 
@@ -16,7 +17,9 @@ declare class PreviewView extends UIView {
 
   static layerClass(): typeof NSObject;
 
+  static new(): PreviewView; // inherited from NSObject
+
   session: AVCaptureSession;
 
-  static new(): PreviewView; // inherited from NSObject
+  readonly videoPreviewLayer: AVCaptureVideoPreviewLayer;
 }

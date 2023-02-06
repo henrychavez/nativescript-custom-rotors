@@ -1,4 +1,4 @@
-import { ContentView } from '@nativescript/core';
+import { View } from '@nativescript/core';
 import { Observable } from 'rxjs';
 
 export type TakePhotoEventData = {
@@ -6,7 +6,7 @@ export type TakePhotoEventData = {
   object: unknown;
 };
 
-export abstract class Camera2Common extends ContentView {
+export abstract class Camera2Common extends View {
   abstract takePhoto(): Observable<TakePhotoEventData>;
   abstract startCamera(): void;
   abstract switchCamera(): void;

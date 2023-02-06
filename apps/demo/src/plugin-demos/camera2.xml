@@ -4,7 +4,7 @@
         </ActionBar>
     </Page.actionBar>
     <GridLayout rows="*, auto" class="p-20">
-        <voicethread:Camera2 loaded="{{ onCameraLoad }}"></voicethread:Camera2>
+        <voicethread:Camera2 backgroundColor="red" loaded="{{ onCameraLoad }}"></voicethread:Camera2>
         <StackLayout row="1">
         <button class="btn btn-primary"  text="take photo" tap="{{ takePhoto }}"></button>
         <button class="btn btn-primary"  text="capture video" tap="{{ captureVideo }}"></button>
