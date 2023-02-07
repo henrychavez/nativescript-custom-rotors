@@ -1,7 +1,7 @@
 import { concatMap, from, Observable, Subject, tap } from 'rxjs';
 import { Camera2Common, TakePhotoEventData } from './common';
 import { request as requestPermission } from '@nativescript-community/perms';
-import { Application, ImageSource, knownFolders, path, Utils, View } from '@nativescript/core';
+import { Application, Dialogs, ImageSource, knownFolders, path, Utils, View } from '@nativescript/core';
 import { orientationChangedEvent, OrientationChangedEventData } from '@nativescript/core/application';
 import { Camera2ConfigService } from './core';
 
@@ -46,16 +46,52 @@ class AVCapturePhotoCaptureDelegateImpl extends NSObject implements AVCapturePho
   }
 }
 
+@NativeClass()
+class AVCaptureFileOutputRecordingDelegateImpl extends NSObject implements AVCaptureFileOutputRecordingDelegate {
+  public static ObjCProtocols = [AVCaptureFileOutputRecordingDelegate];
+  /**
+   * Used when the initWithCallbackWithOwner is called
+   *
+   * @private
+   * @type {Camera2}
+   * @memberof AVCaptureFileOutputRecordingDelegateImpl
+   */
+  private _owner: Camera2;
+
+  /**
+   *
+   * No callback. Just a weak reference to owner
+   * @static
+   * @param {WeakRef<Camera2>} owner
+   * @returns {AVCaptureFileOutputRecordingDelegateImpl}
+   * @memberof AVCaptureFileOutputRecordingDelegateImpl
+   */
+  public static initWithOwner(owner: WeakRef<Camera2>): AVCaptureFileOutputRecordingDelegateImpl {
+    const delegate = AVCaptureFileOutputRecordingDelegateImpl.new() as AVCaptureFileOutputRecordingDelegateImpl;
+    delegate._owner = owner.get();
+    console.log('AVCaptureFileOutputRecordingDelegate::initialized');
+    return delegate;
+  }
+
+  captureOutputDidFinishRecordingToOutputFileAtURLFromConnectionsError(output: AVCaptureFileOutput, outputFileURL: NSURL, connections: NSArray<AVCaptureConnection> | AVCaptureConnection[], error: NSError): void {
+    console.log('captureOutputDidFinishRecordingToOutputFileAtURLFromConnectionsError');
+  }
+
+  captureOutputDidStartRecordingToOutputFileAtURLFromConnections(output: AVCaptureFileOutput, fileURL: NSURL, connections: NSArray<AVCaptureConnection> | AVCaptureConnection[]): void {
+    console.log('captureOutputDidStartRecordingToOutputFileAtURLFromConnections');
+  }
+}
+
 export class Camera2 extends Camera2Common {
   public nativeView: UIView;
 
   private avCapturesession = AVCaptureSession.new();
   private photoOutput = AVCapturePhotoOutput.new();
-  private backCamera: AVCaptureDevice;
   private videoDeviceInput: AVCaptureDeviceInput;
   private videoOutput = AVCaptureMovieFileOutput.new();
+  private backCamera: AVCaptureDevice;
+  private frontCamera: AVCaptureDevice;
   private currentCamera: AVCaptureDevice;
-  // private frontCamera: AVCaptureDevice;
   // private audio: AVCaptureDevice;
 
   private backInput: AVCaptureInput;
@@ -66,12 +102,13 @@ export class Camera2 extends Camera2Common {
 
   private videoPreviewLayer: AVCaptureVideoPreviewLayer;
 
+  // Delegates
   private photoCaptureDelegate: AVCapturePhotoCaptureDelegate;
+  private fileOutputRecordingDelegate: AVCaptureFileOutputRecordingDelegate;
 
   // private currOrientation: 'portrait' | 'landscape' | 'unknown' = 'landscape';
 
   public createNativeView(): UIView {
-    // this.nativeView = PreviewView.new();
     this.nativeView = UIView.new();
     return this.nativeView;
   }
@@ -85,30 +122,19 @@ export class Camera2 extends Camera2Common {
       )
       .pipe(
         tap((response) => {
-          console.log('permission event', response);
           this.startCamera();
         })
       )
       .subscribe();
     // this.handleScreenRotation();
-  }
 
-  onLoaded(): void {
-    super.onLoaded();
-  }
-  public onUnloaded(): void {
-    Application.off(orientationChangedEvent, () => {
-      console.log('unloaded');
-    });
-    super.onUnloaded();
+    // Init Delegates
+    const owner = new WeakRef(this);
+    this.photoCaptureDelegate = AVCapturePhotoCaptureDelegateImpl.initWithOwner(owner);
+    this.fileOutputRecordingDelegate = AVCaptureFileOutputRecordingDelegateImpl.initWithOwner(owner);
   }
 
   startCamera(): void {
-    // Utils.dispatchToMainThread(() => {
-    // });
-    //init session
-    // this.avCapturesession = AVCaptureSession.new();
-
     //start configuration
     this.avCapturesession.beginConfiguration();
     this.avCapturesession.sessionPreset = AVCaptureSessionPresetPhoto;
@@ -125,10 +151,6 @@ export class Camera2 extends Camera2Common {
 
     this.videoPreviewLayer = AVCaptureVideoPreviewLayer.new();
     this.videoPreviewLayer.frame = this.nativeView.layer.bounds;
-    // this.previewLayer.orientation = windowOrientation;
-    // this.previewLayer.position = { x: 0, y: 0 };
-    // this.previewLayer.anchorPoint = { x: 0, y: 0 };
-    // this.previewLayer.needsDisplay();
 
     this.nativeView.layer.insertSublayerAtIndex(this.videoPreviewLayer, 0);
 
@@ -138,14 +160,28 @@ export class Camera2 extends Camera2Common {
     this.avCapturesession.commitConfiguration();
     //start running it
     this.avCapturesession.startRunning();
-    console.log('session is running?', this.videoPreviewLayer.session.running);
+  }
+
+  setupDevice() {
+    // let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
+    // let devices = deviceDiscoverySession.devices
+    // for device in devices {
+    //     if device.position == AVCaptureDevice.Position.front {
+    //         frontCamera = device
+    //     }
+    //     if device.position == AVCaptureDevice.Position.back {
+    //         rearCamera = device
+    //     }
+    // }
+    // currentCamera = rearCamera
   }
 
   setupSessionInputs() {
-    const videoDevice = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(AVCaptureDeviceTypeBuiltInWideAngleCamera, AVMediaTypeVideo, AVCaptureDevicePosition.Back);
-    this.currentCamera = videoDevice;
+    this.backCamera = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(AVCaptureDeviceTypeBuiltInWideAngleCamera, AVMediaTypeVideo, AVCaptureDevicePosition.Back);
+    this.frontCamera = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(AVCaptureDeviceTypeBuiltInWideAngleCamera, AVMediaTypeVideo, AVCaptureDevicePosition.Front);
+    this.currentCamera = this.backCamera;
     try {
-      this.videoDeviceInput = AVCaptureDeviceInput.deviceInputWithDeviceError(videoDevice);
+      this.videoDeviceInput = AVCaptureDeviceInput.deviceInputWithDeviceError(this.backCamera);
 
       // this.avCapturesession.canAddInput(this.backInput) && this.avCapturesession.addInput(this.backInput);
 
@@ -155,15 +191,6 @@ export class Camera2 extends Camera2Common {
     } catch (error) {
       console.log("Couldn't add video device input to the session.", error);
     }
-
-    // try {
-    //   this.audio = AVCaptureDevice.defaultDeviceWithMediaType(AVCaptureDeviceTypeBuiltInMicrophone);
-    //   this.audioInput = AVCaptureDeviceInput.deviceInputWithDeviceError(this.audio);
-
-    //   this.avCapturesession.addInput(this.audioInput);
-    // } catch (error) {
-    //   console.log('Could not add audio device input to the session', error);
-    // }
   }
 
   setupSessionOutputs() {
@@ -178,12 +205,6 @@ export class Camera2 extends Camera2Common {
     }
   }
 
-  pauseVideo(): void {
-    throw new Error('Method not implemented.');
-  }
-  resumeVideo(): void {
-    throw new Error('Method not implemented.');
-  }
   takePhoto(): Observable<TakePhotoEventData> {
     const response = new Subject<TakePhotoEventData>();
     const photoSettings = AVCapturePhotoSettings.new();
@@ -198,22 +219,68 @@ export class Camera2 extends Camera2Common {
     this.photoOutput.highResolutionCaptureEnabled = true;
     photoSettings.highResolutionPhotoEnabled = true;
 
-    this.photoCaptureDelegate = AVCapturePhotoCaptureDelegateImpl.initWithOwner(new WeakRef(this));
     this.photoOutput.capturePhotoWithSettingsDelegate(photoSettings, this.photoCaptureDelegate);
 
     return response;
   }
   switchCamera(): void {
-    throw new Error('Method not implemented.');
+    // const currentVideoDevice = this.videoDeviceInput.device;
+    // const currentPosition = currentVideoDevice.position;
+    // const newPosition = currentPosition == AVCaptureDevicePosition.Front ? AVCaptureDevicePosition.Back : AVCaptureDevicePosition.Front;
+    // const newDevice = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(AVCaptureDeviceTypeBuiltInWideAngleCamera, AVMediaTypeVideo, newPosition);
+
+    // this.currentCamera = newDevice;
+    this.avCapturesession.beginConfiguration();
+
+    // Change the device based on the current camera
+    const newDevice = this.currentCamera?.position == AVCaptureDevicePosition.Back ? this.frontCamera : this.backCamera;
+
+    // Remove all inputs from the session
+    for (let index = 0; index < this.avCapturesession.inputs.count; index++) {
+      const input = this.avCapturesession.inputs.objectAtIndex(index);
+      this.avCapturesession?.removeInput(input as unknown as AVCaptureDeviceInput);
+    }
+
+    // Change to the new input
+    this.videoDeviceInput = AVCaptureDeviceInput.deviceInputWithDeviceError(newDevice);
+    if (this.avCapturesession.canAddInput(this.videoDeviceInput)) {
+      console.log('av capture session');
+      this.avCapturesession.addInput(this.videoDeviceInput);
+      this.currentCamera = newDevice;
+    }
+
+    this.avCapturesession?.commitConfiguration();
   }
   toggleFlash(): void {
-    if (!this.currentCamera.torchAvailable) return;
+    if (!this.currentCamera.torchAvailable) {
+      Dialogs.alert('Torch not available');
+      return;
+    }
+
     this.currentCamera.lockForConfiguration();
     this.currentCamera.torchMode = this.currentCamera.torchActive ? AVCaptureTorchMode.Off : AVCaptureTorchMode.On;
     this.currentCamera.unlockForConfiguration();
   }
 
   captureVideo(): void {
+    const filePath = `${knownFolders.temp().path}/${Date.now()}.mov`;
+    const tempFilePath = NSURL.fileURLWithPath(filePath);
+
+    if (this.videoOutput.recording) {
+      console.log('stopping recording');
+      this.videoOutput.stopRecording();
+      return;
+    }
+    console.log('starting recording');
+    this.videoOutput.startRecordingToOutputFileURLRecordingDelegate(tempFilePath, this.fileOutputRecordingDelegate);
+  }
+
+  pauseVideo(): void {
+    // if (this.videoOutput.recording) {
+    //   this.videoOutput.
+    // }
+  }
+  resumeVideo(): void {
     throw new Error('Method not implemented.');
   }
 
