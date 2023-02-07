@@ -69,37 +69,37 @@ class AVCaptureFileOutputRecordingDelegateImpl extends NSObject implements AVCap
   public static initWithOwner(owner: WeakRef<Camera2>): AVCaptureFileOutputRecordingDelegateImpl {
     const delegate = AVCaptureFileOutputRecordingDelegateImpl.new() as AVCaptureFileOutputRecordingDelegateImpl;
     delegate._owner = owner.get();
-    console.log('AVCaptureFileOutputRecordingDelegate::initialized');
     return delegate;
-  }
-
-  captureOutputDidFinishRecordingToOutputFileAtURLFromConnectionsError(output: AVCaptureFileOutput, outputFileURL: NSURL, connections: NSArray<AVCaptureConnection> | AVCaptureConnection[], error: NSError): void {
-    console.log('captureOutputDidFinishRecordingToOutputFileAtURLFromConnectionsError');
   }
 
   captureOutputDidStartRecordingToOutputFileAtURLFromConnections(output: AVCaptureFileOutput, fileURL: NSURL, connections: NSArray<AVCaptureConnection> | AVCaptureConnection[]): void {
     console.log('captureOutputDidStartRecordingToOutputFileAtURLFromConnections');
+  }
+
+  captureOutputDidFinishRecordingToOutputFileAtURLFromConnectionsError(output: AVCaptureFileOutput, outputFileURL: NSURL, connections: NSArray<AVCaptureConnection> | AVCaptureConnection[], error: NSError): void {
+    this._owner.saveVideo(outputFileURL);
   }
 }
 
 export class Camera2 extends Camera2Common {
   public nativeView: UIView;
 
+  // Capture Session
   private avCapturesession = AVCaptureSession.new();
-  private photoOutput = AVCapturePhotoOutput.new();
-  private videoDeviceInput: AVCaptureDeviceInput;
-  private videoOutput = AVCaptureMovieFileOutput.new();
+  // Devices
   private backCamera: AVCaptureDevice;
   private frontCamera: AVCaptureDevice;
+  private audio: AVCaptureDevice;
   private currentCamera: AVCaptureDevice;
-  // private audio: AVCaptureDevice;
-
-  private backInput: AVCaptureInput;
-  // private frontInput: AVCaptureInput;
-  // private audioInput: AVCaptureInput;
-
-  // private isbackCameraRunning = false;
-
+  // Inputs
+  private backCameraInput: AVCaptureDeviceInput;
+  private frontCameraInput: AVCaptureDeviceInput;
+  private audioInput: AVCaptureDeviceInput;
+  private currentDeviceInput: AVCaptureDeviceInput;
+  // Outputs
+  private photoOutput = AVCapturePhotoOutput.new();
+  private videoOutput = AVCaptureMovieFileOutput.new();
+  // Preview Layer
   private videoPreviewLayer: AVCaptureVideoPreviewLayer;
 
   // Delegates
@@ -126,7 +126,8 @@ export class Camera2 extends Camera2Common {
         })
       )
       .subscribe();
-    // this.handleScreenRotation();
+    // TODO: Support screen rotation
+    this.handleScreenRotation();
 
     // Init Delegates
     const owner = new WeakRef(this);
@@ -150,6 +151,7 @@ export class Camera2 extends Camera2Common {
     const windowOrientation: AVCaptureVideoOrientation = this.nativeView.window?.windowScene?.interfaceOrientation as unknown as AVCaptureVideoOrientation;
 
     this.videoPreviewLayer = AVCaptureVideoPreviewLayer.new();
+    this.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspect;
     this.videoPreviewLayer.frame = this.nativeView.layer.bounds;
 
     this.nativeView.layer.insertSublayerAtIndex(this.videoPreviewLayer, 0);
@@ -162,31 +164,28 @@ export class Camera2 extends Camera2Common {
     this.avCapturesession.startRunning();
   }
 
-  setupDevice() {
-    // let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
-    // let devices = deviceDiscoverySession.devices
-    // for device in devices {
-    //     if device.position == AVCaptureDevice.Position.front {
-    //         frontCamera = device
-    //     }
-    //     if device.position == AVCaptureDevice.Position.back {
-    //         rearCamera = device
-    //     }
-    // }
-    // currentCamera = rearCamera
-  }
-
   setupSessionInputs() {
+    // Setup devices
     this.backCamera = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(AVCaptureDeviceTypeBuiltInWideAngleCamera, AVMediaTypeVideo, AVCaptureDevicePosition.Back);
     this.frontCamera = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(AVCaptureDeviceTypeBuiltInWideAngleCamera, AVMediaTypeVideo, AVCaptureDevicePosition.Front);
+    this.audio = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(AVCaptureDeviceTypeBuiltInMicrophone, AVMediaTypeAudio, AVCaptureDevicePosition.Unspecified);
+
     this.currentCamera = this.backCamera;
+
     try {
-      this.videoDeviceInput = AVCaptureDeviceInput.deviceInputWithDeviceError(this.backCamera);
+      // Setup device inputs
+      this.backCameraInput = AVCaptureDeviceInput.deviceInputWithDeviceError(this.backCamera);
+      this.frontCameraInput = AVCaptureDeviceInput.deviceInputWithDeviceError(this.frontCamera);
+      this.audioInput = AVCaptureDeviceInput.deviceInputWithDeviceError(this.audio);
+      this.currentDeviceInput = this.backCameraInput;
 
-      // this.avCapturesession.canAddInput(this.backInput) && this.avCapturesession.addInput(this.backInput);
+      // Setup Back camera as default device input
+      if (this.avCapturesession.canAddInput(this.currentDeviceInput)) {
+        this.avCapturesession.addInput(this.currentDeviceInput);
+      }
 
-      if (this.avCapturesession.canAddInput(this.videoDeviceInput)) {
-        this.avCapturesession.addInput(this.videoDeviceInput);
+      if (this.avCapturesession.canAddInput(this.audioInput)) {
+        this.avCapturesession.addInput(this.audioInput);
       }
     } catch (error) {
       console.log("Couldn't add video device input to the session.", error);
@@ -212,7 +211,7 @@ export class Camera2 extends Camera2Common {
     const videoPreviewLayerOrientation = this.videoPreviewLayer.connection.videoOrientation;
     this.photoOutput.connectionWithMediaType(AVMediaTypeVideo).videoOrientation = videoPreviewLayerOrientation;
 
-    if (this.videoDeviceInput.device.flashAvailable) {
+    if (this.currentDeviceInput.device.flashAvailable) {
       photoSettings.flashMode = AVCaptureFlashMode.Auto;
     }
 
@@ -224,12 +223,6 @@ export class Camera2 extends Camera2Common {
     return response;
   }
   switchCamera(): void {
-    // const currentVideoDevice = this.videoDeviceInput.device;
-    // const currentPosition = currentVideoDevice.position;
-    // const newPosition = currentPosition == AVCaptureDevicePosition.Front ? AVCaptureDevicePosition.Back : AVCaptureDevicePosition.Front;
-    // const newDevice = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(AVCaptureDeviceTypeBuiltInWideAngleCamera, AVMediaTypeVideo, newPosition);
-
-    // this.currentCamera = newDevice;
     this.avCapturesession.beginConfiguration();
 
     // Change the device based on the current camera
@@ -242,10 +235,9 @@ export class Camera2 extends Camera2Common {
     }
 
     // Change to the new input
-    this.videoDeviceInput = AVCaptureDeviceInput.deviceInputWithDeviceError(newDevice);
-    if (this.avCapturesession.canAddInput(this.videoDeviceInput)) {
-      console.log('av capture session');
-      this.avCapturesession.addInput(this.videoDeviceInput);
+    this.currentDeviceInput = AVCaptureDeviceInput.deviceInputWithDeviceError(newDevice);
+    if (this.avCapturesession.canAddInput(this.currentDeviceInput)) {
+      this.avCapturesession.addInput(this.currentDeviceInput);
       this.currentCamera = newDevice;
     }
 
@@ -263,7 +255,7 @@ export class Camera2 extends Camera2Common {
   }
 
   captureVideo(): void {
-    const filePath = `${knownFolders.temp().path}/${Date.now()}.mov`;
+    const filePath = `${NSTemporaryDirectory()}${Date.now()}.mov`;
     const tempFilePath = NSURL.fileURLWithPath(filePath);
 
     if (this.videoOutput.recording) {
@@ -276,12 +268,13 @@ export class Camera2 extends Camera2Common {
   }
 
   pauseVideo(): void {
+    // TODO: the docs mention a puaseRecording Method but it seems to only be available for macOS
     // if (this.videoOutput.recording) {
     //   this.videoOutput.
     // }
   }
   resumeVideo(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 
   savePhoto(image: ImageSource) {
@@ -306,8 +299,24 @@ export class Camera2 extends Camera2Common {
       const completionTarget = CompletionTarget.new();
       UIImageWriteToSavedPhotosAlbum(image.ios, completionTarget, 'thisImage:hasBeenSavedInPhotoAlbumWithError:usingContextInfo:', null);
     } catch (error) {
-      console.log('error saving', error);
+      console.error('Error saving image', error);
     }
+  }
+
+  saveVideo(videoPathUrl: NSURL) {
+    console.log('video path', videoPathUrl);
+    PHPhotoLibrary.sharedPhotoLibrary().performChangesCompletionHandler(
+      () => {
+        PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(videoPathUrl);
+      },
+      (saved, error) => {
+        if (saved) {
+          console.log('Video saved!');
+          return;
+        }
+        console.error('Error saving video', saved, error);
+      }
+    );
   }
 
   private handleScreenRotation(): void {
@@ -315,30 +324,35 @@ export class Camera2 extends Camera2Common {
     // int ORIENTATION_UNDEFINED = 0;
     // int ORIENTATION_PORTRAIT = 1;
     // int ORIENTATION_LANDSCAPE = 2;
-    // console.log('handleScreenRotation');
-    // Application.on(orientationChangedEvent, (args: OrientationChangedEventData) => {
-    // if (args.newValue === 'portrait') {
-    //   this.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.Portrait;
-    // }
-    // if (this.currOrientation !== args.newValue) {
-    //   console.log('orientationChangedEvent!', args.newValue);
-    //   // this.previewLayer.frame = this.nativeView.layer.bounds;
-    //   setTimeout(() => {
-    //     console.log('object', this.nativeView.sizeToFit());
-    //     console.log('object', this.nativeView.layer.bounds.size.width, this.nativeView.layer.bounds.size.height);
-    //   });
-    //   this.previewLayer.connection.videoOrientation = this.nativeView.window?.windowScene?.interfaceOrientation as unknown as AVCaptureVideoOrientation;
-    //   this.currOrientation = args.newValue;
-    // }
-    // if (args.newValue === 'landscape') {
-    //   this.previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.LandscapeRight;
-    // }
-    // this.previewLayer.layoutIfNeeded();
-    // this.previewLayer.displayIfNeeded()
-    // this.previewLayer.fillMode = kCAFillModeBoth
-    // this.previewLayer.position = { x: 0, y: 0 };
-    // this.previewLayer.anchorPoint = { x: 0, y: 0 };
-    // this.previewLayer.needsDisplay();
-    // });
+    console.log('handleScreenRotation');
+    Application.on(orientationChangedEvent, (args: OrientationChangedEventData) => {
+      if (args.newValue === 'portrait') {
+        console.log('portrait');
+        this.videoPreviewLayer.connection.videoOrientation = AVCaptureVideoOrientation.Portrait;
+        // this.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+        // this.videoPreviewLayer.frame = this.nativeView.layer.bounds;
+        // this.videoPreviewLayer.layoutIfNeeded();
+        // this.videoPreviewLayer.needsDisplay();
+      }
+      // if (this.currOrientation !== args.newValue) {
+      //   console.log('orientationChangedEvent!', args.newValue);
+      //   // this.previewLayer.frame = this.nativeView.layer.bounds;
+      //   setTimeout(() => {
+      //     console.log('object', this.nativeView.sizeToFit());
+      //     console.log('object', this.nativeView.layer.bounds.size.width, this.nativeView.layer.bounds.size.height);
+      //   });
+      //   this.previewLayer.connection.videoOrientation = this.nativeView.window?.windowScene?.interfaceOrientation as unknown as AVCaptureVideoOrientation;
+      //   this.currOrientation = args.newValue;
+      // }
+      if (args.newValue === 'landscape') {
+        this.videoPreviewLayer.connection.videoOrientation = AVCaptureVideoOrientation.LandscapeRight;
+      }
+      // this.previewLayer.layoutIfNeeded();
+      // this.previewLayer.displayIfNeeded();
+      // this.previewLayer.fillMode = kCAFillModeBoth;
+      // this.previewLayer.position = { x: 0, y: 0 };
+      // this.previewLayer.anchorPoint = { x: 0, y: 0 };
+      // this.previewLayer.needsDisplay();
+    });
   }
 }
