@@ -66,6 +66,8 @@ export class Camera2 extends Camera2Common {
 
   private videoPreviewLayer: AVCaptureVideoPreviewLayer;
 
+  private photoCaptureDelegate: AVCapturePhotoCaptureDelegate;
+
   // private currOrientation: 'portrait' | 'landscape' | 'unknown' = 'landscape';
 
   public createNativeView(): UIView {
@@ -196,7 +198,8 @@ export class Camera2 extends Camera2Common {
     this.photoOutput.highResolutionCaptureEnabled = true;
     photoSettings.highResolutionPhotoEnabled = true;
 
-    this.photoOutput.capturePhotoWithSettingsDelegate(photoSettings, AVCapturePhotoCaptureDelegateImpl.initWithOwner(new WeakRef(this)));
+    this.photoCaptureDelegate = AVCapturePhotoCaptureDelegateImpl.initWithOwner(new WeakRef(this));
+    this.photoOutput.capturePhotoWithSettingsDelegate(photoSettings, this.photoCaptureDelegate);
 
     return response;
   }
@@ -216,20 +219,25 @@ export class Camera2 extends Camera2Common {
 
   savePhoto(image: ImageSource) {
     try {
-      // UIImageWriteToSavedPhotosAlbum(
-      //   image,
-      //   new WeakRef(this),
-      //   (args, context) => {
-      //     console.log('phot saved', args);
-      //   },
-      //   null
-      // );
-      console.log('image source', image);
-      const folder = knownFolders.temp();
-      const imagePath = path.join(folder.path, `${Date.now()}.jpg`);
-      image.saveToFileAsync(imagePath, 'jpg', 72).then((saved) => {
-        console.log('imagePath', saved);
-      });
+      const CompletionTarget = NSObject.extend(
+        {
+          'thisImage:hasBeenSavedInPhotoAlbumWithError:usingContextInfo:': (image, error, context) => {
+            if (error) {
+              console.warn('help-page.saveToAlbum error: CompletionTarget creation failed');
+            }
+          },
+        },
+        {
+          exposedMethods: {
+            'thisImage:hasBeenSavedInPhotoAlbumWithError:usingContextInfo:': {
+              returns: interop.types.void,
+              params: [UIImage, NSError, interop.Pointer],
+            },
+          },
+        }
+      );
+      const completionTarget = CompletionTarget.new();
+      UIImageWriteToSavedPhotosAlbum(image.ios, completionTarget, 'thisImage:hasBeenSavedInPhotoAlbumWithError:usingContextInfo:', null);
     } catch (error) {
       console.log('error saving', error);
     }
