@@ -279,7 +279,7 @@ export class Camera2 extends Camera2Common {
 
   savePhoto(image: ImageSource) {
     try {
-      const CompletionTarget = NSObject.extend(
+      const CompletionTarget = (NSObject as any).extend(
         {
           'thisImage:hasBeenSavedInPhotoAlbumWithError:usingContextInfo:': (image, error, context) => {
             if (error) {
