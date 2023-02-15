@@ -113,6 +113,13 @@ export class Camera2 extends Camera2Common {
     return this.nativeView;
   }
 
+  public onLayout(left: number, top: number, right: number, bottom: number): void {
+    super.onLayout(left, top, right, bottom);
+    if (this.videoPreviewLayer && this.ios) {
+      this.videoPreviewLayer.frame = this.ios.layer.bounds;
+    }
+  }
+
   initNativeView() {
     // Request permissions
     from(requestPermission('camera'))
@@ -157,7 +164,9 @@ export class Camera2 extends Camera2Common {
     this.nativeView.layer.insertSublayerAtIndex(this.videoPreviewLayer, 0);
 
     this.videoPreviewLayer.session = this.avCapturesession;
-    this.videoPreviewLayer.connection.videoOrientation = windowOrientation;
+    if (this.videoPreviewLayer.connection) {
+      this.videoPreviewLayer.connection.videoOrientation = windowOrientation;
+    }
     //commit configuration
     this.avCapturesession.commitConfiguration();
     //start running it
@@ -326,33 +335,36 @@ export class Camera2 extends Camera2Common {
     // int ORIENTATION_LANDSCAPE = 2;
     console.log('handleScreenRotation');
     Application.on(orientationChangedEvent, (args: OrientationChangedEventData) => {
-      if (args.newValue === 'portrait') {
-        console.log('portrait');
-        this.videoPreviewLayer.connection.videoOrientation = AVCaptureVideoOrientation.Portrait;
-        // this.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-        // this.videoPreviewLayer.frame = this.nativeView.layer.bounds;
-        // this.videoPreviewLayer.layoutIfNeeded();
-        // this.videoPreviewLayer.needsDisplay();
+      if (this.videoPreviewLayer.connection) {
+        if (args.newValue === 'portrait') {
+          console.log('portrait');
+          this.videoPreviewLayer.connection.videoOrientation = AVCaptureVideoOrientation.Portrait;
+          // this.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+          // this.videoPreviewLayer.frame = this.nativeView.layer.bounds;
+          // this.videoPreviewLayer.layoutIfNeeded();
+          // this.videoPreviewLayer.needsDisplay();
+        }
+        // if (this.currOrientation !== args.newValue) {
+        //   console.log('orientationChangedEvent!', args.newValue);
+        //   // this.previewLayer.frame = this.nativeView.layer.bounds;
+        //   setTimeout(() => {
+        //     console.log('object', this.nativeView.sizeToFit());
+        //     console.log('object', this.nativeView.layer.bounds.size.width, this.nativeView.layer.bounds.size.height);
+        //   });
+        //   this.previewLayer.connection.videoOrientation = this.nativeView.window?.windowScene?.interfaceOrientation as unknown as AVCaptureVideoOrientation;
+        //   this.currOrientation = args.newValue;
+        // }
+        if (args.newValue === 'landscape') {
+          console.log('landscape');
+          this.videoPreviewLayer.connection.videoOrientation = AVCaptureVideoOrientation.LandscapeRight;
+        }
+        // this.previewLayer.layoutIfNeeded();
+        // this.previewLayer.displayIfNeeded();
+        // this.previewLayer.fillMode = kCAFillModeBoth;
+        // this.previewLayer.position = { x: 0, y: 0 };
+        // this.previewLayer.anchorPoint = { x: 0, y: 0 };
+        // this.previewLayer.needsDisplay();
       }
-      // if (this.currOrientation !== args.newValue) {
-      //   console.log('orientationChangedEvent!', args.newValue);
-      //   // this.previewLayer.frame = this.nativeView.layer.bounds;
-      //   setTimeout(() => {
-      //     console.log('object', this.nativeView.sizeToFit());
-      //     console.log('object', this.nativeView.layer.bounds.size.width, this.nativeView.layer.bounds.size.height);
-      //   });
-      //   this.previewLayer.connection.videoOrientation = this.nativeView.window?.windowScene?.interfaceOrientation as unknown as AVCaptureVideoOrientation;
-      //   this.currOrientation = args.newValue;
-      // }
-      if (args.newValue === 'landscape') {
-        this.videoPreviewLayer.connection.videoOrientation = AVCaptureVideoOrientation.LandscapeRight;
-      }
-      // this.previewLayer.layoutIfNeeded();
-      // this.previewLayer.displayIfNeeded();
-      // this.previewLayer.fillMode = kCAFillModeBoth;
-      // this.previewLayer.position = { x: 0, y: 0 };
-      // this.previewLayer.anchorPoint = { x: 0, y: 0 };
-      // this.previewLayer.needsDisplay();
     });
   }
 }
