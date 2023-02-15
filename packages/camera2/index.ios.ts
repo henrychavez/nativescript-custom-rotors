@@ -32,11 +32,18 @@ class AVCapturePhotoCaptureDelegateImpl extends NSObject implements AVCapturePho
     return delegate;
   }
 
-  captureOutputDidCapturePhotoForResolvedSettings(output: AVCapturePhotoOutput, resolvedSettings: AVCaptureResolvedPhotoSettings): void {
+  captureOutputDidCapturePhotoForResolvedSettings(
+    output: AVCapturePhotoOutput,
+    resolvedSettings: AVCaptureResolvedPhotoSettings
+  ): void {
     console.log('captureOutputDidCapturePhotoForResolvedSettings');
   }
 
-  captureOutputDidFinishProcessingPhotoError(output: AVCapturePhotoOutput, photo: AVCapturePhoto, error: NSError): void {
+  captureOutputDidFinishProcessingPhotoError(
+    output: AVCapturePhotoOutput,
+    photo: AVCapturePhoto,
+    error: NSError
+  ): void {
     console.log('captureOutputDidFinishProcessingPhotoError');
     const imageData = photo.fileDataRepresentation();
     // const image = UIImage.new().initWithData(imageData);
@@ -72,11 +79,20 @@ class AVCaptureFileOutputRecordingDelegateImpl extends NSObject implements AVCap
     return delegate;
   }
 
-  captureOutputDidStartRecordingToOutputFileAtURLFromConnections(output: AVCaptureFileOutput, fileURL: NSURL, connections: NSArray<AVCaptureConnection> | AVCaptureConnection[]): void {
+  captureOutputDidStartRecordingToOutputFileAtURLFromConnections(
+    output: AVCaptureFileOutput,
+    fileURL: NSURL,
+    connections: NSArray<AVCaptureConnection> | AVCaptureConnection[]
+  ): void {
     console.log('captureOutputDidStartRecordingToOutputFileAtURLFromConnections');
   }
 
-  captureOutputDidFinishRecordingToOutputFileAtURLFromConnectionsError(output: AVCaptureFileOutput, outputFileURL: NSURL, connections: NSArray<AVCaptureConnection> | AVCaptureConnection[], error: NSError): void {
+  captureOutputDidFinishRecordingToOutputFileAtURLFromConnectionsError(
+    output: AVCaptureFileOutput,
+    outputFileURL: NSURL,
+    connections: NSArray<AVCaptureConnection> | AVCaptureConnection[],
+    error: NSError
+  ): void {
     this._owner.saveVideo(outputFileURL);
   }
 }
@@ -85,7 +101,7 @@ export class Camera2 extends Camera2Common {
   public nativeView: UIView;
 
   // Capture Session
-  private avCapturesession = AVCaptureSession.new();
+  private avCapturesession = AVCaptureMultiCamSession.new();
   // Devices
   private backCamera: AVCaptureDevice;
   private frontCamera: AVCaptureDevice;
@@ -138,8 +154,8 @@ export class Camera2 extends Camera2Common {
   startCamera(): void {
     //start configuration
     this.avCapturesession.beginConfiguration();
-    this.avCapturesession.sessionPreset = AVCaptureSessionPresetPhoto;
-    this.avCapturesession.automaticallyConfiguresCaptureDeviceForWideColor = true;
+    // this.avCapturesession.sessionPreset = AVCaptureSessionPresetPhoto;
+    // this.avCapturesession.automaticallyConfiguresCaptureDeviceForWideColor = true;
 
     //setup inputs
     this.setupSessionInputs();
@@ -148,7 +164,8 @@ export class Camera2 extends Camera2Common {
     this.setupSessionOutputs();
 
     // Setup Preview Layer
-    const windowOrientation: AVCaptureVideoOrientation = this.nativeView.window?.windowScene?.interfaceOrientation as unknown as AVCaptureVideoOrientation;
+    const windowOrientation: AVCaptureVideoOrientation = this.nativeView.window?.windowScene
+      ?.interfaceOrientation as unknown as AVCaptureVideoOrientation;
 
     this.videoPreviewLayer = AVCaptureVideoPreviewLayer.new();
     this.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspect;
@@ -166,9 +183,21 @@ export class Camera2 extends Camera2Common {
 
   setupSessionInputs() {
     // Setup devices
-    this.backCamera = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(AVCaptureDeviceTypeBuiltInWideAngleCamera, AVMediaTypeVideo, AVCaptureDevicePosition.Back);
-    this.frontCamera = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(AVCaptureDeviceTypeBuiltInWideAngleCamera, AVMediaTypeVideo, AVCaptureDevicePosition.Front);
-    this.audio = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(AVCaptureDeviceTypeBuiltInMicrophone, AVMediaTypeAudio, AVCaptureDevicePosition.Unspecified);
+    this.backCamera = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(
+      AVCaptureDeviceTypeBuiltInWideAngleCamera,
+      AVMediaTypeVideo,
+      AVCaptureDevicePosition.Back
+    );
+    this.frontCamera = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(
+      AVCaptureDeviceTypeBuiltInWideAngleCamera,
+      AVMediaTypeVideo,
+      AVCaptureDevicePosition.Front
+    );
+    this.audio = AVCaptureDevice.defaultDeviceWithDeviceTypeMediaTypePosition(
+      AVCaptureDeviceTypeBuiltInMicrophone,
+      AVMediaTypeAudio,
+      AVCaptureDevicePosition.Unspecified
+    );
 
     this.currentCamera = this.backCamera;
 
@@ -230,15 +259,27 @@ export class Camera2 extends Camera2Common {
 
     // Remove all inputs from the session
     for (let index = 0; index < this.avCapturesession.inputs.count; index++) {
-      const input = this.avCapturesession.inputs.objectAtIndex(index);
-      this.avCapturesession?.removeInput(input as unknown as AVCaptureDeviceInput);
+      const input = this.avCapturesession.inputs.objectAtIndex(index) as AVCaptureDeviceInput;
+      if (input.device.hasMediaType(AVMediaTypeVideo)) {
+        this.avCapturesession?.removeInput(input as unknown as AVCaptureDeviceInput);
+      }
     }
 
+    // this.avCapturesession?.removeInput(this.currentCamera.position === AVCaptureDevicePosition.Back ? this.backCameraInput : this.frontCameraInput);
     // Change to the new input
-    this.currentDeviceInput = AVCaptureDeviceInput.deviceInputWithDeviceError(newDevice);
+    this.currentDeviceInput =
+      this.currentDeviceInput.device.position == AVCaptureDevicePosition.Back
+        ? this.frontCameraInput
+        : this.backCameraInput;
     if (this.avCapturesession.canAddInput(this.currentDeviceInput)) {
+      // const inputPort = this.currentDeviceInput.ports.firstObject;
+      // this.avCapturesession.removeOutput(this.videoOutput);
       this.avCapturesession.addInput(this.currentDeviceInput);
+      // this.avCapturesession.addOutputWithNoConnections(this.videoOutput);
+      // this.avCapturesession.addConnection(AVCaptureConnection.new().initWithInputPortsOutput(this.currentDeviceInput.ports, this.videoOutput));
+      // this.avCapturesession.addConnection(AVCaptureConnection.new().initWithInputPortVideoPreviewLayer(inputPort, this.videoPreviewLayer));
       this.currentCamera = newDevice;
+      console.log('new device', newDevice.position);
     }
 
     this.avCapturesession?.commitConfiguration();
@@ -277,6 +318,12 @@ export class Camera2 extends Camera2Common {
     // throw new Error('Method not implemented.');
   }
 
+  stopVideo(): void {
+    if (!this.videoOutput.recording) return;
+    console.log('stopping recording');
+    this.videoOutput.stopRecording();
+  }
+
   savePhoto(image: ImageSource) {
     try {
       const CompletionTarget = (NSObject as any).extend(
@@ -297,7 +344,12 @@ export class Camera2 extends Camera2Common {
         }
       );
       const completionTarget = CompletionTarget.new();
-      UIImageWriteToSavedPhotosAlbum(image.ios, completionTarget, 'thisImage:hasBeenSavedInPhotoAlbumWithError:usingContextInfo:', null);
+      UIImageWriteToSavedPhotosAlbum(
+        image.ios,
+        completionTarget,
+        'thisImage:hasBeenSavedInPhotoAlbumWithError:usingContextInfo:',
+        null
+      );
     } catch (error) {
       console.error('Error saving image', error);
     }

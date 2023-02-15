@@ -1,2 +1,90 @@
 @import 'nativescript-theme-core/scss/light';
 @import 'nativescript-theme-core/scss/index';
+
+// Utilities
+$spacer-alt: 4;
+$spacer-x-alt: $spacer-alt;
+$spacer-y-alt: $spacer-alt;
+
+$n-spacers: (
+  0: (
+    x: 0,
+    y: 0,
+  ),
+  2: (
+    x: 2,
+    y: 2,
+  ),
+  4: (
+    x: $spacer-x-alt,
+    y: $spacer-y-alt,
+  ),
+  8: (
+    x: $spacer-x-alt * 2,
+    y: $spacer-y-alt * 2,
+  ),
+  12: (
+    x: $spacer-x-alt * 3,
+    y: $spacer-y-alt * 3,
+  ),
+  16: (
+    x: $spacer-x-alt * 4,
+    y: $spacer-y-alt * 4,
+  ),
+  24: (
+    x: $spacer-x-alt * 6,
+    y: $spacer-y-alt * 6,
+  ),
+  28: (
+    x: $spacer-x-alt * 7,
+    y: $spacer-y-alt * 7,
+  ),
+  32: (
+    x: $spacer-x-alt * 8,
+    y: $spacer-y-alt * 8,
+  ),
+  36: (
+    x: $spacer-x-alt * 9,
+    y: $spacer-y-alt * 9,
+  ),
+  40: (
+    x: $spacer-x-alt * 10,
+    y: $spacer-y-alt * 10,
+  ),
+  44: (
+    x: $spacer-x-alt * 11,
+    y: $spacer-y-alt * 11,
+  ),
+  48: (
+    x: $spacer-x-alt * 12,
+    y: $spacer-y-alt * 12,
+  ),
+  72: (
+    x: $spacer-x-alt * 18,
+    y: $spacer-y-alt * 18,
+  ),
+);
+
+// Spacers
+@each $size, $lengths in $n-spacers {
+  $length-x: map-get($lengths, x);
+  $length-y: map-get($lengths, y);
+
+  .--spaced-vertical-#{$size} > * + * {
+    margin-top: $length-y;
+  }
+
+  .--spaced-horizontal-#{$size} > * + * {
+    margin-left: $length-x;
+  }
+}
+
+.mat-icon-button {
+  font-family: 'MaterialIcons-Regular', 'Material Icons';
+  font-size: 24;
+  width: 56;
+  height: 56;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.35);
+  color: white;
+}

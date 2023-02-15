@@ -27,7 +27,9 @@ export class Camera2 extends Camera2Common {
   }
 
   initNativeView() {
-    const hasCamera = (this._context as android.content.Context).getPackageManager().hasSystemFeature(android.content.pm.PackageManager.FEATURE_CAMERA);
+    // const hasCamera = (this._context as android.content.Context)
+    //   .getPackageManager()
+    //   .hasSystemFeature(android.content.pm.PackageManager.FEATURE_CAMERA);
 
     // Request permissions
     from(requestPermission('camera'))
@@ -38,14 +40,10 @@ export class Camera2 extends Camera2Common {
       .pipe(
         tap((response) => {
           console.log('permission event', response);
+          this.startCamera();
         })
       )
       .subscribe();
-
-    if (hasCamera) {
-      // Start Camera
-      this.startCamera();
-    }
   }
 
   takePhoto(): Observable<TakePhotoEventData> {
@@ -59,7 +57,10 @@ export class Camera2 extends Camera2Common {
     contentValues.put(android.provider.MediaStore.MediaColumns.MIME_TYPE, 'image/jpeg');
 
     if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.P) {
-      contentValues.put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, `Pictures/${Camera2ConfigService.instance.folderName}`);
+      contentValues.put(
+        android.provider.MediaStore.MediaColumns.RELATIVE_PATH,
+        `Pictures/${Camera2ConfigService.instance.folderName}`
+      );
     }
 
     // Create output options object which contains file + metadata
@@ -107,16 +108,27 @@ export class Camera2 extends Camera2Common {
     contentValues.put(android.provider.MediaStore.MediaColumns.MIME_TYPE, 'video/mp4');
 
     if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.P) {
-      contentValues.put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, `Movies/${Camera2ConfigService.instance.folderName}`);
+      contentValues.put(
+        android.provider.MediaStore.MediaColumns.RELATIVE_PATH,
+        `Movies/${Camera2ConfigService.instance.folderName}`
+      );
     }
 
-    const mediaStoreOutputOptions = new androidx.camera.video.MediaStoreOutputOptions.Builder(this._context.getContentResolver(), android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI) //
+    const mediaStoreOutputOptions = new androidx.camera.video.MediaStoreOutputOptions.Builder(
+      this._context.getContentResolver(),
+      android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+    ) //
       .setContentValues(contentValues)
       .build();
 
     this.pendingRecording = this.videoCapture.getOutput().prepareRecording(this._context, mediaStoreOutputOptions);
 
-    if (androidx.core.content.PermissionChecker.checkSelfPermission(this._context, android.Manifest.permission.RECORD_AUDIO) === androidx.core.content.PermissionChecker.PERMISSION_GRANTED) {
+    if (
+      androidx.core.content.PermissionChecker.checkSelfPermission(
+        this._context,
+        android.Manifest.permission.RECORD_AUDIO
+      ) === androidx.core.content.PermissionChecker.PERMISSION_GRANTED
+    ) {
       this.pendingRecording.withAudioEnabled();
     }
 
@@ -158,10 +170,20 @@ export class Camera2 extends Camera2Common {
     this.recording.resume();
   }
 
+  stopVideo(): void {
+    if (!this.recording) return;
+    // Stop the current recording session.
+    this.recording.stop();
+    this.pendingRecording = null;
+  }
+
   switchCamera(): void {
-    if (this.cameraSelector == androidx.camera.core.CameraSelector.DEFAULT_FRONT_CAMERA) this.cameraSelector = androidx.camera.core.CameraSelector.DEFAULT_BACK_CAMERA;
-    else if (this.cameraSelector == androidx.camera.core.CameraSelector.DEFAULT_BACK_CAMERA) this.cameraSelector = androidx.camera.core.CameraSelector.DEFAULT_FRONT_CAMERA;
-    this.refreshCamaraPreview();
+    this.cameraSelector =
+      this.cameraSelector == androidx.camera.core.CameraSelector.DEFAULT_FRONT_CAMERA
+        ? androidx.camera.core.CameraSelector.DEFAULT_BACK_CAMERA
+        : androidx.camera.core.CameraSelector.DEFAULT_FRONT_CAMERA;
+
+    this.startCamera();
   }
 
   toggleFlash(): void {
@@ -211,7 +233,11 @@ export class Camera2 extends Camera2Common {
         .addUseCase(this.videoCapture)
         .build();
 
-      this.camera = this.cameraProvider.bindToLifecycle(this._context as androidx.appcompat.app.AppCompatActivity, this.cameraSelector, useCaseGroup);
+      this.camera = this.cameraProvider.bindToLifecycle(
+        this._context as androidx.appcompat.app.AppCompatActivity,
+        this.cameraSelector,
+        useCaseGroup
+      );
     } catch (error) {
       console.error('ERROR IN CAMERA PROVIDER', error);
     }

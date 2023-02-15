@@ -3,15 +3,42 @@
         <ActionBar title="camera2" icon="" class="action-bar">
         </ActionBar>
     </Page.actionBar>
-    <GridLayout rows="*, auto" class="p-20">
-        <voicethread:Camera2 backgroundColor="red" loaded="{{ onCameraLoad }}"></voicethread:Camera2>
-        <StackLayout row="1">
-        <button class="btn btn-primary"  text="take photo" tap="{{ takePhoto }}"></button>
-        <button class="btn btn-primary"  text="capture video" tap="{{ captureVideo }}"></button>
-        <button class="btn btn-primary"  text="pause video" tap="{{ pauseVideo }}"></button>
-        <button class="btn btn-primary"  text="resume video" tap="{{ resumeVideo }}"></button>
-        <button class="btn btn-primary" text="switch camera" tap="{{ switchCamera }}"></button>
-        <button class="btn btn-primary" text="toggle flash" tap="{{ toggleFlash }}"></button>
-        </StackLayout>
+    <GridLayout rows="*, auto">
+
+        <voicethread:Camera2 rowSpan="2" backgroundColor="red" loaded="{{ onCameraLoad }}"></voicethread:Camera2>
+        <FlexboxLayout justifyContent="space-between" alignItems="flex-end" row="1" padding="24">
+          <FlexboxLayout justifyContent="center" alignItems="center" class="mat-icon-button" tap="{{ takePhoto }}">
+            <label class="mat-icon" text="camera"></label>
+          </FlexboxLayout>
+
+          <FlexboxLayout justifyContent="center" class="--spaced-horizontal-8">
+            <FlexboxLayout visibility="{{ (!isRecording || isPaused) ? 'visible' :  'collapsed' }}" justifyContent="center" alignItems="center" class="mat-icon-button" tap="{{ captureVideo }}">
+              <label class="mat-icon" text="circle"></label>
+            </FlexboxLayout>
+
+            <FlexboxLayout visibility="{{ isRecording ? 'visible' :  'collapsed' }}" justifyContent="center" alignItems="center" class="mat-icon-button" tap="{{ pauseVideo }}">
+              <label class="mat-icon" text="pause"></label>
+            </FlexboxLayout>
+
+            <FlexboxLayout visibility="{{ isRecording || isPaused ? 'visible' :  'collapsed' }}" justifyContent="center" alignItems="center" class="mat-icon-button" tap="{{ stopVideo }}">
+              <label class="mat-icon" text="stop"></label>
+            </FlexboxLayout>
+          </FlexboxLayout>
+
+          <FlexboxLayout flexDirection="column" class="--spaced-vertical-24">
+            <FlexboxLayout justifyContent="center" alignItems="center" class="mat-icon-button" tap="{{ switchCamera }}">
+              <label class="mat-icon" text="cameraswitch"></label>
+            </FlexboxLayout>
+
+            <FlexboxLayout justifyContent="center" alignItems="center" class="mat-icon-button" tap="{{ toggleFlash }}">
+              <label class="mat-icon" text="{{ isFlashOn ? 'flash_on' : 'flash_off' }}"></label>
+            </FlexboxLayout>
+          </FlexboxLayout>
+          <!-- <button class="btn btn-primary"  text="capture video" tap="{{ captureVideo }}"></button>
+          <button class="btn btn-primary"  text="pause video" tap="{{ pauseVideo }}"></button>
+          <button class="btn btn-primary"  text="resume video" tap="{{ resumeVideo }}"></button>
+          <button class="btn btn-primary" text="switch camera" tap="{{ switchCamera }}"></button>
+          <button class="btn btn-primary" text="toggle flash" tap="{{ toggleFlash }}"></button> -->
+        </FlexboxLayout>
     </GridLayout>
 </Page>

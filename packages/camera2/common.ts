@@ -12,6 +12,7 @@ export abstract class Camera2Common extends View {
   abstract switchCamera(): void;
   abstract toggleFlash(): void;
   abstract captureVideo(): void;
+  abstract stopVideo(): void;
   abstract pauseVideo(): void;
   abstract resumeVideo(): void;
 }
